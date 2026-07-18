@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  /* ---- Clawberry token system (raw values) ---- */
+  --raw-void: #0f0a1a;         /* base background */
+  --raw-void-soft: #170f28;    /* elevated surface */
+  --raw-void-softer: #201736;  /* card surface */
+  --raw-grape: #6a4bf0;        /* primary brand purple (from logo) */
+  --raw-grape-light: #a493ff;  /* lighter purple for highlights */
+  --raw-grape-dim: #3c2c85;    /* deep purple for borders/gradients */
+  --raw-cream: #fbead9;        /* warm cream (from logo wordmark) */
+  --raw-coral: #ff6b4a;        /* juicy CTA / pop accent */
+  --raw-coral-light: #ff8c6e;
+  --raw-mint: #8fe3c0;         /* fresh secondary accent */
+  --raw-ink: #efe9fb;          /* primary light text */
+  --raw-ink-dim: #a89bce;      /* muted / secondary text */
+  --raw-ink-dimmer: #6f628f;   /* faint text, captions */
+
+  --color-void: var(--raw-void);
+  --color-void-soft: var(--raw-void-soft);
+
+  --ease-claw: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Registers our tokens as real Tailwind utilities: bg-void, text-coral, etc. */
+@theme inline {
+  --color-void: var(--raw-void);
+  --color-void-soft: var(--raw-void-soft);
+  --color-void-softer: var(--raw-void-softer);
+  --color-grape: var(--raw-grape);
+  --color-grape-light: var(--raw-grape-light);
+  --color-grape-dim: var(--raw-grape-dim);
+  --color-cream: var(--raw-cream);
+  --color-coral: var(--raw-coral);
+  --color-coral-light: var(--raw-coral-light);
+  --color-mint: var(--raw-mint);
+  --color-ink: var(--raw-ink);
+  --color-ink-dim: var(--raw-ink-dim);
+  --color-ink-dimmer: var(--raw-ink-dimmer);
+
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-void);
+  color-scheme: dark;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-coral);
+  color: var(--color-void);
+}
+
+/* Custom cursor: hide native cursor only where we render our own (desktop, fine pointer) */
+@media (hover: hover) and (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor a,
+  .has-custom-cursor button {
+    cursor: none;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1.5px var(--color-ink);
+  color: transparent;
+}
+
+.text-gradient-berry {
+  background: linear-gradient(120deg, var(--color-grape-light) 0%, var(--color-coral-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus states kept visible for accessibility even with custom cursor */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-mint);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
