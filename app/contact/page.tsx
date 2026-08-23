@@ -47,7 +47,7 @@ export default function ContactPage() {
                     data-cursor="Open"
                     className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-void-softer px-5 py-4 transition-colors hover:border-mint/40"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mint/15 text-mint">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mint/15 text-mint-deep">
                       <d.icon size={16} />
                     </span>
                     <span className="text-ink">{d.label}</span>

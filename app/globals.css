@@ -11,7 +11,9 @@
   --raw-cream: #fff3dc;        /* bright cream chip (from logo wordmark) */
   --raw-coral: #e8821e;        /* juicy CTA / pop accent — pixel orange */
   --raw-coral-light: #f3a855;
+  --raw-coral-deep: #9c5210;   /* coral, darkened for use as readable text/icons (~4.8:1 on cream) */
   --raw-mint: #6fa0d8;         /* soft secondary accent (sky blue) */
+  --raw-mint-deep: #35648f;    /* mint, darkened for use as readable text/icons (~5.2:1 on cream) */
   --raw-ink: #16213d;          /* primary dark navy text */
   --raw-ink-dim: #4b5578;      /* muted / secondary text */
   --raw-ink-dimmer: #7b84a6;   /* faint text, captions */
@@ -33,7 +35,9 @@
   --color-cream: var(--raw-cream);
   --color-coral: var(--raw-coral);
   --color-coral-light: var(--raw-coral-light);
+  --color-coral-deep: var(--raw-coral-deep);
   --color-mint: var(--raw-mint);
+  --color-mint-deep: var(--raw-mint-deep);
   --color-ink: var(--raw-ink);
   --color-ink-dim: var(--raw-ink-dim);
   --color-ink-dimmer: var(--raw-ink-dimmer);
@@ -111,6 +115,15 @@ h1, h2, h3, h4 {
   color: transparent;
 }
 
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-drift {
+  animation: drift 2.4s ease-in-out infinite;
+}
+
 .grain {
   position: fixed;
   inset: 0;
@@ -135,7 +148,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-mint);
+  outline: 2px solid var(--color-grape);
   outline-offset: 3px;
   border-radius: 4px;
 }

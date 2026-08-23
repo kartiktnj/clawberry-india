@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { MotionConfig } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Nav from "@/components/Nav";
@@ -51,13 +52,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bricolage.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body className="antialiased" id="top">
-        <SmoothScroll>
-          <div className="grain" />
-          <CustomCursor />
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <MotionConfig reducedMotion="user">
+          <SmoothScroll>
+            <div className="grain" />
+            <CustomCursor />
+            <Nav />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </MotionConfig>
       </body>
     </html>
   );

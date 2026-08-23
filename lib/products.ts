@@ -93,8 +93,6 @@ export const products: Product[] = [
 ];
 
 export const stats = [
-  { value: "12k+", label: "Happy tails wagged" },
-  { value: "4.9★", label: "Average rating" },
   { value: "48hr", label: "Pan-India delivery" },
   { value: "100%", label: "Vet-checked formulas" },
 ];
@@ -109,11 +107,6 @@ export const timeline = [
     year: "2024",
     title: "First 500 boxes, packed on a kitchen floor",
     body: "We shipped our first Power Chew Bones out of a one-bedroom flat, hand-writing thank-you notes until our wrists gave out.",
-  },
-  {
-    year: "2025",
-    title: "A community of 12,000+ pet parents",
-    body: "Word of mouth (and paw) turned Clawberry into a name pet parents actually trust — no fillers, no fluff, just tested favourites.",
   },
   {
     year: "2026",

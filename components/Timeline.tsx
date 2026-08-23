@@ -18,7 +18,7 @@ export default function Timeline() {
               <span className="h-1.5 w-1.5 rounded-full bg-ink" />
             </span>
             <div>
-              <span className="font-mono text-xs uppercase tracking-wide text-mint">
+              <span className="font-mono text-xs uppercase tracking-wide text-mint-deep">
                 {item.year}
               </span>
               <h3 className="mt-2 font-display text-2xl font-semibold text-ink sm:text-3xl">

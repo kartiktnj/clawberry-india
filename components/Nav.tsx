@@ -39,13 +39,15 @@ export default function Nav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50",
         scrolled ? "py-3" : "py-5"
       )}
     >
       <div
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 transition-all duration-500 sm:px-6",
+          // Only paint properties (background/border/shadow/blur) animate smoothly here —
+          // margin is a layout property, so it snaps instantly instead of causing reflow every frame.
+          "mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:px-6",
           scrolled
             ? "bg-void-soft/85 backdrop-blur-xl border border-ink/10 shadow-lg shadow-ink/10 py-2 mx-4"
             : "border border-transparent py-2"
@@ -65,9 +67,14 @@ export default function Nav() {
             className="h-9 w-9 rounded-full object-cover sm:h-10 sm:w-10"
             priority
           />
-          <span className="font-display text-lg font-bold tracking-tight text-ink sm:text-xl">
-            Clawberry
-          </span>
+          <Image
+            src="/images/wordmark.png"
+            alt=""
+            width={4096}
+            height={1147}
+            className="h-5 w-auto sm:h-6"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -77,7 +84,7 @@ export default function Nav() {
               href={link.href}
               data-cursor={link.label}
               className={cn(
-                "relative rounded-full px-4 py-2 font-mono text-[13px] uppercase tracking-wide transition-colors",
+                "relative rounded-full px-4 py-2 font-mono text-[13px] uppercase tracking-wide transition active:scale-95",
                 pathname === link.href
                   ? "text-ink bg-cream"
                   : "text-ink-dim hover:text-ink"
@@ -92,7 +99,7 @@ export default function Nav() {
           <Link
             href="/shop"
             data-cursor="Shop"
-            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-coral-light"
+            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-ink transition hover:bg-coral-light active:scale-95"
           >
             Shop now
           </Link>
@@ -100,7 +107,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition active:scale-90 md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -128,8 +135,8 @@ export default function Nav() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "block rounded-xl px-4 py-3 font-display text-2xl font-semibold",
-                      pathname === link.href ? "text-coral" : "text-ink"
+                      "block rounded-xl px-4 py-3 font-display text-2xl font-semibold transition active:bg-ink/5",
+                      pathname === link.href ? "text-coral-deep" : "text-ink"
                     )}
                   >
                     {link.label}
@@ -139,7 +146,7 @@ export default function Nav() {
             </nav>
             <Link
               href="/shop"
-              className="mt-4 flex items-center justify-center rounded-full bg-coral px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-ink"
+              className="mt-4 flex items-center justify-center rounded-full bg-coral px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-ink transition active:scale-95"
             >
               Shop now
             </Link>

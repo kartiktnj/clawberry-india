@@ -73,7 +73,7 @@ export default function ProductShowcase() {
               <a
                 href="/shop"
                 data-cursor="Shop"
-                className="font-mono text-xs uppercase tracking-wide text-coral underline underline-offset-4"
+                className="font-mono text-xs uppercase tracking-wide text-coral-deep underline underline-offset-4"
               >
                 See the full shop →
               </a>

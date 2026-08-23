@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,10 +26,11 @@ export default function Reveal({
   duration = 0.9,
 }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || shouldReduceMotion) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -50,21 +52,22 @@ export default function Reveal({
     }, ref);
 
     return () => ctx.revert();
-  }, [delay, y, duration]);
+  }, [delay, y, duration, shouldReduceMotion]);
+
+  // Reduced motion: skip the hidden-until-scrolled-into-view starting state
+  // entirely, since nothing will ever un-hide it without the GSAP tween.
+  const hiddenUntilRevealed = shouldReduceMotion ? undefined : "invisible";
 
   if (as === "span") {
     return (
-      <span
-        ref={ref as React.RefObject<HTMLSpanElement>}
-        className={cn("invisible", className)}
-      >
+      <span ref={ref as React.RefObject<HTMLSpanElement>} className={cn(hiddenUntilRevealed, className)}>
         {children}
       </span>
     );
   }
 
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className={cn("invisible", className)}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={cn(hiddenUntilRevealed, className)}>
       {children}
     </div>
   );

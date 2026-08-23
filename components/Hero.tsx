@@ -4,14 +4,20 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ArrowDown } from "lucide-react";
-import HeroScene from "./three/HeroScene";
+import { useReducedMotion } from "framer-motion";
+import PawField from "./PawField";
 import MagneticButton from "./ui/MagneticButton";
 
 export default function Hero() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const scope = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
+    // Nothing in this JSX starts hidden — skipping the tweens entirely
+    // just leaves every element in its natural, already-visible state.
+    if (shouldReduceMotion) return;
+
     const ctx = gsap.context(() => {
       const words = headlineRef.current?.querySelectorAll(".word");
       if (words) {
@@ -40,7 +46,7 @@ export default function Hero() {
       );
     }, scope);
     return () => ctx.revert();
-  }, []);
+  }, [shouldReduceMotion]);
 
   const words = ["Spoil", "your", "pet.", "Not", "your", "wallet."];
 
@@ -49,7 +55,7 @@ export default function Hero() {
       ref={scope}
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-void pb-16 pt-40 sm:pt-44"
     >
-      <HeroScene />
+      <PawField />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -109,7 +115,7 @@ export default function Hero() {
 
       <div className="hero-fade absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-ink-dimmer sm:flex">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em]">Scroll</span>
-        <ArrowDown size={14} className="animate-bounce" />
+        <ArrowDown size={14} className="animate-drift" />
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ export default function ShopGrid() {
             onClick={() => setActive(f.key)}
             data-cursor={f.label}
             className={cn(
-              "rounded-full border px-5 py-2.5 font-mono text-xs uppercase tracking-wide transition-colors",
+              "rounded-full border px-5 py-2.5 font-mono text-xs uppercase tracking-wide transition active:scale-95",
               active === f.key
                 ? "border-coral bg-coral text-ink"
                 : "border-ink/15 text-ink-dim hover:border-ink/40 hover:text-ink"
@@ -48,7 +48,7 @@ export default function ShopGrid() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="h-[420px]"
             >
               <ProductCard product={product} className="h-full" />

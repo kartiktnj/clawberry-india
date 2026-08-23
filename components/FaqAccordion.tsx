@@ -25,7 +25,7 @@ export default function FaqAccordion() {
               <ChevronDown
                 size={18}
                 className={`shrink-0 text-ink-dim transition-transform duration-300 ${
-                  isOpen ? "rotate-180 text-coral" : ""
+                  isOpen ? "rotate-180 text-coral-deep" : ""
                 }`}
               />
             </button>

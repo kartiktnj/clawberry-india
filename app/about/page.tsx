@@ -20,9 +20,10 @@ export default function AboutPage() {
         eyebrow="Our story"
         title={
           <>
-            Built by two humans who
-            <br />
-            got <span className="text-gradient-berry">out-negotiated</span> by a beagle.
+            Built by three humans who were 
+            {/* <br /> */}
+            <span className="text-gradient-berry"> out-numbered</span> by eight dogs,
+            and still thought starting a pet brand was a good idea.
           </>
         }
         description="Clawberry exists because our own dog rejected every 'premium' treat on the market — and we got curious about why."
@@ -79,7 +80,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
-              From a spreadsheet to 12,000+ homes.
+              From a spreadsheet to a real brand.
             </h2>
           </Reveal>
           <Timeline />

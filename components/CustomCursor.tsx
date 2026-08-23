@@ -66,10 +66,10 @@ export default function CustomCursor() {
         aria-hidden
       >
         <div
-          className={`flex items-center justify-center rounded-full border transition-all duration-300 ease-out ${
+          className={`flex h-20 w-20 origin-center items-center justify-center rounded-full border transition-[transform,background-color,border-color] duration-300 ease-out ${
             label
-              ? "h-20 w-20 border-transparent bg-cream text-ink"
-              : "h-9 w-9 border-ink/40 bg-transparent"
+              ? "scale-100 border-transparent bg-cream text-ink"
+              : "scale-[0.45] border-ink/40 bg-transparent"
           }`}
         >
           {label && (

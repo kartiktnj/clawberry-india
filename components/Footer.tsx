@@ -137,7 +137,7 @@ export default function Footer() {
           <a
             href="#top"
             data-cursor="Top"
-            className="flex items-center gap-1 font-mono text-xs uppercase tracking-wide text-ink-dimmer hover:text-mint"
+            className="flex items-center gap-1 font-mono text-xs uppercase tracking-wide text-ink-dimmer hover:text-mint-deep"
           >
             Back to top <ArrowUpRight size={14} />
           </a>
