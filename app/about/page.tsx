@@ -31,7 +31,7 @@ export default function AboutPage() {
       <section className="bg-void pb-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-void-softer p-10 sm:p-14">
+            <div className="relative overflow-hidden rounded-[32px] border border-ink/10 bg-void-softer p-10 sm:p-14">
               <div
                 className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-grape/25 blur-3xl"
                 aria-hidden
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 alt="Clawberry mascot — pixel-art dog and cat peeking over the logo"
                 width={480}
                 height={384}
-                className="relative w-full max-w-sm rounded-2xl border border-white/10"
+                className="relative w-full max-w-sm rounded-2xl border border-ink/10"
               />
             </div>
           </Reveal>
@@ -101,7 +101,7 @@ export default function AboutPage() {
               <Reveal
                 key={v.title}
                 delay={i * 0.08}
-                className="rounded-3xl border border-white/10 bg-void-softer p-8"
+                className="rounded-3xl border border-ink/10 bg-void-softer p-8 shadow-sm"
               >
                 <h3 className="font-display text-xl font-semibold text-ink">{v.title}</h3>
                 <p className="mt-2 text-ink-dim">{v.body}</p>

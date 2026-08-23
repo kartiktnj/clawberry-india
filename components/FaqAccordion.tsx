@@ -9,7 +9,7 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-white/10 rounded-3xl border border-white/10 bg-void-softer">
+    <div className="divide-y divide-ink/10 rounded-3xl border border-ink/10 bg-void-softer">
       {faqs.map((item, i) => {
         const isOpen = open === i;
         return (

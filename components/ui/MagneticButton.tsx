@@ -48,7 +48,7 @@ export default function MagneticButton({
   const base =
     "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-display text-sm font-semibold uppercase tracking-wide transition-colors duration-300";
   const variants = {
-    solid: "bg-coral text-void hover:bg-coral-light",
+    solid: "bg-coral text-ink hover:bg-coral-light",
     outline: "border border-ink/25 text-ink hover:border-ink/60",
     ghost: "text-ink hover:text-coral",
   };

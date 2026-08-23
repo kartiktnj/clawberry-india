@@ -2,19 +2,19 @@
 
 :root {
   /* ---- Clawberry token system (raw values) ---- */
-  --raw-void: #0f0a1a;         /* base background */
-  --raw-void-soft: #170f28;    /* elevated surface */
-  --raw-void-softer: #201736;  /* card surface */
-  --raw-grape: #6a4bf0;        /* primary brand purple (from logo) */
-  --raw-grape-light: #a493ff;  /* lighter purple for highlights */
-  --raw-grape-dim: #3c2c85;    /* deep purple for borders/gradients */
-  --raw-cream: #fbead9;        /* warm cream (from logo wordmark) */
-  --raw-coral: #ff6b4a;        /* juicy CTA / pop accent */
-  --raw-coral-light: #ff8c6e;
-  --raw-mint: #8fe3c0;         /* fresh secondary accent */
-  --raw-ink: #efe9fb;          /* primary light text */
-  --raw-ink-dim: #a89bce;      /* muted / secondary text */
-  --raw-ink-dimmer: #6f628f;   /* faint text, captions */
+  --raw-void: #fbe8c8;         /* base background — warm pixel cream */
+  --raw-void-soft: #f2d9a8;    /* elevated surface — deeper tan-cream */
+  --raw-void-softer: #fffdf7;  /* card surface — crisp off-white */
+  --raw-grape: #2c5aa0;        /* primary brand blue (from logo badge) */
+  --raw-grape-light: #6e97ce;  /* lighter blue for highlights */
+  --raw-grape-dim: #14213d;    /* deep navy for borders/gradients */
+  --raw-cream: #fff3dc;        /* bright cream chip (from logo wordmark) */
+  --raw-coral: #e8821e;        /* juicy CTA / pop accent — pixel orange */
+  --raw-coral-light: #f3a855;
+  --raw-mint: #6fa0d8;         /* soft secondary accent (sky blue) */
+  --raw-ink: #16213d;          /* primary dark navy text */
+  --raw-ink-dim: #4b5578;      /* muted / secondary text */
+  --raw-ink-dimmer: #7b84a6;   /* faint text, captions */
 
   --color-void: var(--raw-void);
   --color-void-soft: var(--raw-void-soft);
@@ -49,7 +49,7 @@
 
 html {
   background: var(--color-void);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html.lenis {
@@ -74,7 +74,7 @@ body {
 
 ::selection {
   background: var(--color-coral);
-  color: var(--color-void);
+  color: var(--color-cream);
 }
 
 /* Custom cursor: hide native cursor only where we render our own (desktop, fine pointer) */
@@ -105,7 +105,7 @@ h1, h2, h3, h4 {
 }
 
 .text-gradient-berry {
-  background: linear-gradient(120deg, var(--color-grape-light) 0%, var(--color-coral-light) 100%);
+  background: linear-gradient(120deg, var(--color-grape) 0%, var(--color-coral) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

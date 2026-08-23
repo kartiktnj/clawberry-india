@@ -30,8 +30,8 @@ export default function ShopGrid() {
             className={cn(
               "rounded-full border px-5 py-2.5 font-mono text-xs uppercase tracking-wide transition-colors",
               active === f.key
-                ? "border-coral bg-coral text-void"
-                : "border-white/15 text-ink-dim hover:border-white/40 hover:text-ink"
+                ? "border-coral bg-coral text-ink"
+                : "border-ink/15 text-ink-dim hover:border-ink/40 hover:text-ink"
             )}
           >
             {f.label}

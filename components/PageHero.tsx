@@ -16,7 +16,7 @@ export default function PageHero({
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(45% 40% at 15% 0%, rgba(106,75,240,0.28), transparent 70%)",
+            "radial-gradient(45% 40% at 15% 0%, rgba(44,90,160,0.2), transparent 70%)",
         }}
         aria-hidden
       />

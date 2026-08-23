@@ -68,7 +68,7 @@ export default function CustomCursor() {
         <div
           className={`flex items-center justify-center rounded-full border transition-all duration-300 ease-out ${
             label
-              ? "h-20 w-20 border-transparent bg-cream text-void"
+              ? "h-20 w-20 border-transparent bg-cream text-ink"
               : "h-9 w-9 border-ink/40 bg-transparent"
           }`}
         >

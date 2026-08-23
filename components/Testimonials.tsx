@@ -41,7 +41,7 @@ export default function Testimonials() {
             <Reveal
               key={r.name}
               delay={i * 0.1}
-              className="flex flex-col justify-between rounded-3xl border border-white/10 bg-void-softer p-8"
+              className="flex flex-col justify-between rounded-3xl border border-ink/10 bg-void-softer p-8 shadow-sm"
             >
               <div>
                 <div className="flex gap-1 text-coral">

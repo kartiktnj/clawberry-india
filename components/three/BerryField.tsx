@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-const COLORS = ["#6a4bf0", "#ff6b4a", "#8fe3c0", "#a493ff"];
+const COLORS = ["#2c5aa0", "#e8821e", "#6fa0d8", "#6e97ce"];
 
 type BerryData = {
   position: [number, number, number];
@@ -86,7 +86,7 @@ export default function BerryField() {
     >
       <ambientLight intensity={0.65} />
       <directionalLight position={[4, 5, 5]} intensity={1.1} />
-      <directionalLight position={[-4, -2, -3]} intensity={0.3} color="#a493ff" />
+      <directionalLight position={[-4, -2, -3]} intensity={0.3} color="#6e97ce" />
       <Berries />
     </Canvas>
   );

@@ -10,7 +10,7 @@ export default function SectionLabel({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-dim",
+        "inline-flex items-center gap-2 rounded-full border border-ink/15 bg-ink/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-dim",
         className
       )}
     >

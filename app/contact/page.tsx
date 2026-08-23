@@ -45,7 +45,7 @@ export default function ContactPage() {
                   <a
                     href={d.href}
                     data-cursor="Open"
-                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-void-softer px-5 py-4 transition-colors hover:border-mint/40"
+                    className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-void-softer px-5 py-4 transition-colors hover:border-mint/40"
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mint/15 text-mint">
                       <d.icon size={16} />
@@ -63,7 +63,7 @@ export default function ContactPage() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.15} className="rounded-3xl border border-white/10 bg-void-softer p-6 sm:p-10">
+          <Reveal delay={0.15} className="rounded-3xl border border-ink/10 bg-void-softer p-6 sm:p-10 shadow-sm">
             <ContactForm />
           </Reveal>
         </div>

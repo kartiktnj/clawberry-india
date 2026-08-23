@@ -39,7 +39,7 @@ export default function ContactForm() {
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col items-center gap-4 rounded-3xl border border-mint/30 bg-mint/10 px-8 py-16 text-center"
       >
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-mint text-void">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-mint text-ink">
           <Check size={22} />
         </span>
         <h3 className="font-display text-2xl font-semibold text-ink">Message sent</h3>
@@ -70,7 +70,7 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             placeholder="Your name"
-            className="rounded-2xl border border-white/15 bg-void-softer px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
+            className="rounded-2xl border border-ink/12 bg-void-softer px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -85,7 +85,7 @@ export default function ContactForm() {
             value={form.email}
             onChange={handleChange}
             placeholder="you@email.com"
-            className="rounded-2xl border border-white/15 bg-void-softer px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
+            className="rounded-2xl border border-ink/12 bg-void-softer px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
           />
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function ContactForm() {
           value={form.message}
           onChange={handleChange}
           placeholder="Tell us about your pet (we mean it, tell us)"
-          className="resize-none rounded-2xl border border-white/15 bg-void-softer px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
+          className="resize-none rounded-2xl border border-ink/12 bg-void-softer px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
         />
       </div>
       {status === "error" && (

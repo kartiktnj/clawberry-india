@@ -44,7 +44,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-void-soft">
+    <footer className="relative overflow-hidden border-t border-ink/10 bg-void-soft">
       <div className="mx-auto max-w-7xl px-6 pb-10 pt-20 sm:px-8">
         <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr]">
           <div>
@@ -63,7 +63,7 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@email.com"
-                className="w-full rounded-full border border-white/15 bg-void px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
+                className="w-full rounded-full border border-ink/15 bg-void px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
               />
               <MagneticButton type="submit" variant="solid" cursorLabel="Join">
                 {submitted ? "You're in ✦" : "Get 10% off"}
@@ -121,7 +121,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-ink/10 pt-8 sm:flex-row sm:items-center">
           <div className="flex items-center gap-2.5">
             <Image
               src="/images/logo-icon.png"
