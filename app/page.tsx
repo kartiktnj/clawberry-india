@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div className="border-y border-white/10 bg-cream py-3 font-display text-sm font-semibold uppercase tracking-wide text-void">
+      <div className="border-y border-white/10 bg-grape py-3 font-display text-sm font-semibold uppercase tracking-wide text-cream">
         <Marquee items={TICKER} speed={24} />
       </div>
       <ProductShowcase />

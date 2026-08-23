@@ -54,7 +54,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 20%, rgba(106,75,240,0.28), transparent 70%)",
+            "radial-gradient(60% 50% at 50% 20%, rgba(44,90,160,0.22), transparent 70%)",
         }}
         aria-hidden
       />
@@ -85,7 +85,7 @@ export default function Hero() {
               alt="Clawberry mascot — pixel-art dog and cat"
               width={200}
               height={160}
-              className="relative w-[13vw] max-w-[220px] rotate-3 rounded-3xl border border-white/10 shadow-2xl shadow-black/50"
+              className="relative w-[13vw] max-w-[220px] rotate-3 rounded-3xl border border-ink/10 shadow-2xl shadow-ink/20"
             />
           </div>
         </div>

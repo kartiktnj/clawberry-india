@@ -5,7 +5,7 @@ export default function Timeline() {
   return (
     <div className="relative mt-4">
       <div
-        className="absolute left-[7px] top-2 bottom-2 w-px bg-white/10 sm:left-[11px]"
+        className="absolute left-[7px] top-2 bottom-2 w-px bg-ink/15 sm:left-[11px]"
         aria-hidden
       />
       <div className="flex flex-col gap-12">
@@ -15,7 +15,7 @@ export default function Timeline() {
               className="absolute left-0 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-coral sm:h-6 sm:w-6"
               aria-hidden
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-void" />
+              <span className="h-1.5 w-1.5 rounded-full bg-ink" />
             </span>
             <div>
               <span className="font-mono text-xs uppercase tracking-wide text-mint">

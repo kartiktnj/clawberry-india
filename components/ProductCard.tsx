@@ -9,8 +9,8 @@ import ProductIcon from "./ui/ProductIcon";
 import { cn } from "@/lib/utils";
 
 const COLOR_CLASSES: Record<Product["color"], { bg: string; text: string; ring: string }> = {
-  grape: { bg: "bg-grape/20", text: "text-grape-light", ring: "hover:border-grape-light/50" },
-  coral: { bg: "bg-coral/15", text: "text-coral-light", ring: "hover:border-coral-light/50" },
+  grape: { bg: "bg-grape/15", text: "text-grape", ring: "hover:border-grape/50" },
+  coral: { bg: "bg-coral/15", text: "text-coral", ring: "hover:border-coral/50" },
   mint: { bg: "bg-mint/15", text: "text-mint", ring: "hover:border-mint/50" },
 };
 
@@ -50,7 +50,7 @@ export default function ProductCard({
       onMouseLeave={handleLeave}
       style={{ rotateX, rotateY, transformPerspective: 800 }}
       className={cn(
-        "group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] border border-white/10 bg-void-softer p-6 transition-colors duration-300",
+        "group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] border border-ink/10 bg-void-softer p-6 shadow-sm transition-colors duration-300",
         colors.ring,
         className
       )}
@@ -82,11 +82,11 @@ export default function ProductCard({
         <h3 className="font-display text-xl font-semibold text-ink">{product.name}</h3>
         <p className="mt-1.5 text-sm text-ink-dim">{product.tagline}</p>
         <div className="mt-5 flex items-center justify-between">
-          <span className="font-display text-lg font-bold text-cream">₹{product.price}</span>
+          <span className="font-display text-lg font-bold text-ink">₹{product.price}</span>
           <Link
             href={`/shop`}
             data-cursor="View"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-ink transition-colors group-hover:border-coral group-hover:text-coral"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors group-hover:border-coral group-hover:text-coral"
             aria-label={`View ${product.name}`}
           >
             <ArrowUpRight size={16} />

@@ -8,7 +8,7 @@ export default function CtaBanner() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(50% 60% at 50% 50%, rgba(106,75,240,0.35), transparent 70%)",
+            "radial-gradient(50% 60% at 50% 50%, rgba(44,90,160,0.22), transparent 70%)",
         }}
         aria-hidden
       />

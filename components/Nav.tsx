@@ -47,7 +47,7 @@ export default function Nav() {
         className={cn(
           "mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 transition-all duration-500 sm:px-6",
           scrolled
-            ? "bg-void-soft/80 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/20 py-2 mx-4"
+            ? "bg-void-soft/85 backdrop-blur-xl border border-ink/10 shadow-lg shadow-ink/10 py-2 mx-4"
             : "border border-transparent py-2"
         )}
       >
@@ -79,7 +79,7 @@ export default function Nav() {
               className={cn(
                 "relative rounded-full px-4 py-2 font-mono text-[13px] uppercase tracking-wide transition-colors",
                 pathname === link.href
-                  ? "text-void bg-cream"
+                  ? "text-ink bg-cream"
                   : "text-ink-dim hover:text-ink"
               )}
             >
@@ -92,7 +92,7 @@ export default function Nav() {
           <Link
             href="/shop"
             data-cursor="Shop"
-            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-void transition-colors hover:bg-coral-light"
+            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-coral-light"
           >
             Shop now
           </Link>
@@ -100,7 +100,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-ink md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -115,7 +115,7 @@ export default function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-4 mt-3 rounded-3xl border border-white/10 bg-void-soft/95 p-6 backdrop-blur-xl md:hidden"
+            className="mx-4 mt-3 rounded-3xl border border-ink/10 bg-void-soft/95 p-6 backdrop-blur-xl md:hidden"
           >
             <nav className="flex flex-col gap-1">
               {LINKS.map((link, i) => (
@@ -139,7 +139,7 @@ export default function Nav() {
             </nav>
             <Link
               href="/shop"
-              className="mt-4 flex items-center justify-center rounded-full bg-coral px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-void"
+              className="mt-4 flex items-center justify-center rounded-full bg-coral px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-ink"
             >
               Shop now
             </Link>

@@ -16,7 +16,7 @@ export default function WhySection() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v, i) => (
             <Reveal key={v.title} delay={i * 0.08} className="bg-void-soft p-8">
               <span className="font-mono text-xs text-ink-dimmer">0{i + 1}</span>
