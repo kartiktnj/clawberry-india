@@ -51,7 +51,7 @@ export default function PawField() {
   }, []);
 
   return (
-    <div className="pointer-events-none absolute inset-0 hidden overflow-hidden sm:block" aria-hidden>
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       {PAWS.map((item, i) => (
         <div
           key={i}

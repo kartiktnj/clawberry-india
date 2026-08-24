@@ -4,14 +4,6 @@ import MagneticButton from "./ui/MagneticButton";
 export default function CtaBanner() {
   return (
     <section className="relative overflow-hidden bg-void py-24 sm:py-32">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(50% 60% at 50% 50%, rgba(44,90,160,0.22), transparent 70%)",
-        }}
-        aria-hidden
-      />
       <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-8 px-6 text-center">
         <Reveal>
           <h2 className="font-display text-5xl font-bold leading-[0.98] text-ink sm:text-7xl">

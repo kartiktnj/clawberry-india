@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ArrowDown } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import PawField from "./PawField";
+import CursorTrail from "./CursorTrail";
 import MagneticButton from "./ui/MagneticButton";
 
 export default function Hero() {
@@ -56,14 +57,7 @@ export default function Hero() {
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-void pb-16 pt-40 sm:pt-44"
     >
       <PawField />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(60% 50% at 50% 20%, rgba(44,90,160,0.22), transparent 70%)",
-        }}
-        aria-hidden
-      />
+      <CursorTrail />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 sm:px-8">
         <div className="flex items-start justify-between gap-6">

@@ -12,14 +12,6 @@ export default function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden bg-void pb-16 pt-40 sm:pt-48">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(45% 40% at 15% 0%, rgba(44,90,160,0.2), transparent 70%)",
-        }}
-        aria-hidden
-      />
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
         <Reveal>
           <SectionLabel>{eyebrow}</SectionLabel>
