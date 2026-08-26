@@ -23,6 +23,9 @@ export default function ShopPage() {
       />
       <section className="bg-void pb-28">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
+          <p className="mb-10 font-mono text-xs uppercase tracking-[0.18em] text-ink-dimmer">
+            Picked for paws. Approved by tail wags. Purr-tested, parent-approved.
+          </p>
           <ShopGrid />
         </div>
       </section>

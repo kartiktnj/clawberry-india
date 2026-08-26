@@ -49,24 +49,25 @@ export default function Footer() {
         <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <h3 className="font-display text-4xl font-bold leading-[1.05] text-ink sm:text-5xl">
-              Give their tail
-              <br />
-              something to <span className="text-gradient-berry">wag</span> about.
+              Get the <span className="text-gradient-berry">good stuff.</span>
             </h3>
+            <p className="mt-3 max-w-md text-ink-dim">
+              New drops, little surprises and plenty of pet-approved things.
+            </p>
             <form
               onSubmit={handleSubmit}
-              className="mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+              className="mt-6 flex max-w-md flex-col gap-3 sm:flex-row"
             >
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@email.com"
+                placeholder="Your email, please human"
                 className="w-full rounded-full border border-ink/15 bg-void px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
               />
               <MagneticButton type="submit" variant="solid" cursorLabel="Join">
-                {submitted ? "You're in ✦" : "Get 10% off"}
+                {submitted ? "You're in ✦" : "Join the pack"}
               </MagneticButton>
             </form>
             <p className="mt-3 font-mono text-xs text-ink-dimmer">
@@ -121,7 +122,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-ink/10 pt-8 sm:flex-row sm:items-center">
+        <p className="mt-16 text-sm text-ink-dim">
+          A little more love for the ones who give us so much. Woofs. Meows. Wags.
+          Purrs. ❤️
+        </p>
+
+        <div className="mt-6 flex flex-col items-start justify-between gap-6 border-t border-ink/10 pt-8 sm:flex-row sm:items-center">
           <div className="flex items-center gap-2.5">
             <Image
               src="/images/logo-icon.png"

@@ -72,7 +72,7 @@ components/
   ui/             Reveal, MagneticButton, Marquee, SectionLabel, ClawDivider, ProductIcon
 
 lib/
-  products.ts     Products, stats, brand timeline, values, and FAQ copy
+  products.ts     Products, stats, brand values/promises, founders, and FAQ copy
   utils.ts        `cn()` class-merge helper
 ```
 

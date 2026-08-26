@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://clawberry.in";
+  const base = "https://clawberryindia.com";
   const routes = ["", "/shop", "/about", "/contact"];
 
   return routes.map((route) => ({

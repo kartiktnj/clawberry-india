@@ -97,24 +97,6 @@ export const stats = [
   { value: "100%", label: "Vet-checked formulas" },
 ];
 
-export const timeline = [
-  {
-    year: "2023",
-    title: "Two humans, one very spoiled beagle",
-    body: "Clawberry started as a spreadsheet of every treat our beagle Momo rejected, and every one she'd sell her squeaky toys for.",
-  },
-  {
-    year: "2024",
-    title: "First 500 boxes, packed on a kitchen floor",
-    body: "We shipped our first Power Chew Bones out of a one-bedroom flat, hand-writing thank-you notes until our wrists gave out.",
-  },
-  {
-    year: "2026",
-    title: "Building the pet aisle we always wanted",
-    body: "Now we're designing the next generation of Clawberry essentials - playful, premium, and built around how pets actually behave.",
-  },
-];
-
 export const values = [
   {
     title: "Tested on real chaos",
@@ -131,6 +113,45 @@ export const values = [
   {
     title: "Packed with zero guilt",
     body: "Recyclable packaging and carbon-light shipping, because the planet has pets too.",
+  },
+];
+
+export const whyClawberry = [
+  {
+    title: "Made with pets in mind",
+    body: "Comfort, usefulness and the little things that make a difference.",
+  },
+  {
+    title: "Quality you can feel good about",
+    body: "Products we would be happy bringing home to our own pets.",
+  },
+  {
+    title: "Fair prices, always",
+    body: "Because better shouldn't automatically mean expensive.",
+  },
+  {
+    title: "Built by pet parents",
+    body: "We get the responsibility. We also get the obsession.",
+  },
+];
+
+export const brandPromises = ["Thoughtfully made", "Fairly priced", "Made with love"];
+
+export const founders = [
+  {
+    name: "Devansh Bhardwaj",
+    role: "Co-Founder",
+    body: "The ideas, the ambition and a serious love for animals.",
+  },
+  {
+    name: "Sandeep Malhotra",
+    role: "Co-Founder",
+    body: "Always looking for a better way to build, improve and grow the Clawberry world.",
+  },
+  {
+    name: "Kartik Taneja",
+    role: "Co-Founder",
+    body: "Helping turn three friends' big dream into something every pet parent can experience.",
   },
 ];
 

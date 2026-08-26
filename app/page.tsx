@@ -5,10 +5,10 @@ import WhySection from "@/components/WhySection";
 import CtaBanner from "@/components/CtaBanner";
 
 const TICKER = [
-  "Free 48hr delivery",
-  "Vet-approved formulas",
-  "30-day returns",
-  "New drops monthly",
+  "Free Shipping above 999",
+  "Get 10% off on first order",
+  "Free Shipping above 999",
+  "lorem ipsum dolor sit amet",
 ];
 
 export default function Home() {
