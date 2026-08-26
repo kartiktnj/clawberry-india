@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://clawberry.in/sitemap.xml",
+    sitemap: "https://clawberryindia.com/sitemap.xml",
   };
 }

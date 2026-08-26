@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 };
 
 const DETAILS = [
-  { icon: Mail, label: "hello@clawberry.in", href: "mailto:hello@clawberry.in" },
-  { icon: Phone, label: "+91 98765 43210", href: "tel:+919876543210" },
-  { icon: MapPin, label: "Bengaluru, India", href: "#" },
+  { icon: Mail, label: "clawberryindia@gmail.com", href: "mailto:clawberryindia@gmail.com" },
+  { icon: Phone, label: "+91 9810270909", href: "tel:+919810270909" },
+  { icon: MapPin, label: "Delhi, India", href: "#" },
 ];
 
 export default function ContactPage() {

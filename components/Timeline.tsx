@@ -1,7 +1,14 @@
-import { timeline } from "@/lib/products";
 import Reveal from "./ui/Reveal";
 
-export default function Timeline() {
+export type TimelineItem = { year: string; title: string; body: string };
+
+/**
+ * Not wired up on any page yet - no dated milestones to show pre-launch.
+ * Pass real `items` once there are actual dates to anchor them to.
+ */
+export default function Timeline({ items }: { items: TimelineItem[] }) {
+  if (items.length === 0) return null;
+
   return (
     <div className="relative mt-4">
       <div
@@ -9,7 +16,7 @@ export default function Timeline() {
         aria-hidden
       />
       <div className="flex flex-col gap-12">
-        {timeline.map((item, i) => (
+        {items.map((item, i) => (
           <Reveal key={item.year} delay={i * 0.08} className="relative flex gap-6 pl-8 sm:gap-10 sm:pl-14">
             <span
               className="absolute left-0 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-coral sm:h-6 sm:w-6"
