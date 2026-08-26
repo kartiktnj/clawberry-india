@@ -9,7 +9,7 @@ export type Review = {
 };
 
 /**
- * Not wired up on any page yet — there's no real review to show pre-launch.
+ * Not wired up on any page yet - there's no real review to show pre-launch.
  * Pass real `reviews` once orders start shipping; this file intentionally
  * ships no placeholder data so it can't be mistaken for the real thing.
  */

@@ -59,7 +59,7 @@ export default function ShopGrid() {
 
       {filtered.length === 0 && (
         <p className="mt-10 text-center text-ink-dim">
-          Nothing here yet — check back for the next drop.
+          Nothing here yet - check back for the next drop.
         </p>
       )}
     </div>

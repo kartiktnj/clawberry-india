@@ -6,7 +6,7 @@ import CtaBanner from "@/components/CtaBanner";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Browse Clawberry's full range of dog and cat essentials — treats, toys, beds and gear built for pets with zero chill.",
+    "Browse Clawberry's full range of dog and cat essentials - treats, toys, beds and gear built for pets with zero chill.",
 };
 
 export default function ShopPage() {

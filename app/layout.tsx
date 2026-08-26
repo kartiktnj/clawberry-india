@@ -28,14 +28,14 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://clawberry.in"),
   title: {
-    default: "Clawberry — Premium supplies for dogs & cats",
+    default: "Clawberry India",
     template: "%s · Clawberry",
   },
   description:
-    "Clawberry makes playful, premium pet supplies — treats, toys, beds and gear tested by real dogs and unreasonable cats. Free 48hr delivery across India.",
-  keywords: ["pet supplies", "dog toys", "cat toys", "pet treats India", "Clawberry"],
+    "Clawberry makes playful, premium pet supplies - treats, toys, beds and gear tested by real dogs and unreasonable cats. Free 48hr delivery across India.",
+  keywords: ["pet collars", "dog toys", "cat toys", "pet toys India", "Clawberry"],
   openGraph: {
-    title: "Clawberry — Premium supplies for dogs & cats",
+    title: "Clawberry",
     description:
       "Playful, premium pet supplies tested by real dogs and unreasonable cats.",
     url: "https://clawberry.in",

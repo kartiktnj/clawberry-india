@@ -16,16 +16,8 @@ const LINKS = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setOpen(false));
@@ -37,22 +29,8 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50",
-        scrolled ? "py-3" : "py-5"
-      )}
-    >
-      <div
-        className={cn(
-          // Only paint properties (background/border/shadow/blur) animate smoothly here —
-          // margin is a layout property, so it snaps instantly instead of causing reflow every frame.
-          "mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:px-6",
-          scrolled
-            ? "bg-void-soft/85 backdrop-blur-xl border border-ink/10 shadow-lg shadow-ink/10 py-2 mx-4"
-            : "border border-transparent py-2"
-        )}
-      >
+    <header className="fixed inset-x-0 top-0 z-50 py-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-ink/10 bg-void-soft/85 px-5 py-2 shadow-lg shadow-ink/10 backdrop-blur-xl sm:px-6">
         <Link
           href="/"
           className="flex items-center gap-2.5"

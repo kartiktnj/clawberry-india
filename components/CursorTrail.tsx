@@ -5,12 +5,12 @@ import { PawPrint } from "lucide-react";
 
 type Print = { id: number; x: number; y: number; rot: number };
 
-// Keep streaks and idle wandering inside the open space above the headline —
+// Keep streaks and idle wandering inside the open space above the headline -
 // never down where the copy/buttons sit.
 const SAFE_BOUNDS = { xMin: 4, xMax: 90, yMin: 6, yMax: 62 }; // percent of hero box
 
 const STEP_GAP = 46; // min px between live cursor-tracked spawns
-const OFFSET = 9; // perpendicular gait offset, px — sells "two feet" instead of a dotted line
+const OFFSET = 9; // perpendicular gait offset, px - sells "two feet" instead of a dotted line
 const MAX_PRINTS = 22;
 
 const STREAK_STEPS = 8;
@@ -48,7 +48,7 @@ export default function CursorTrail() {
   };
 
   useEffect(() => {
-    // Idle streaks run on every device — only the live cursor-follow logic
+    // Idle streaks run on every device - only the live cursor-follow logic
     // needs a real pointer, so that part alone is gated on `fine` below.
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -66,7 +66,7 @@ export default function CursorTrail() {
       streakTimers.length = 0;
     };
 
-    // A short burst of footprints from a random spot in a random direction —
+    // A short burst of footprints from a random spot in a random direction -
     // the same shape as the load-in intro, replayed on an interval while
     // idle. Any real cursor movement cancels it instantly (see liveHandler).
     const playStreak = () => {
@@ -109,7 +109,7 @@ export default function CursorTrail() {
 
     playStreak(); // first streak fires immediately on load
 
-    // No real pointer (touch/mobile) — idle streaks just keep looping on
+    // No real pointer (touch/mobile) - idle streaks just keep looping on
     // their own interval forever, nothing to hand off to.
     if (!fine) {
       return () => {

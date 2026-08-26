@@ -2,14 +2,14 @@
 
 :root {
   /* ---- Clawberry token system (raw values) ---- */
-  --raw-void: #fbe8c8;         /* base background — warm pixel cream */
-  --raw-void-soft: #f2d9a8;    /* elevated surface — deeper tan-cream */
-  --raw-void-softer: #fffdf7;  /* card surface — crisp off-white */
+  --raw-void: #fbe8c8;         /* base background - warm pixel cream */
+  --raw-void-soft: #f2d9a8;    /* elevated surface - deeper tan-cream */
+  --raw-void-softer: #fffdf7;  /* card surface - crisp off-white */
   --raw-grape: #2c5aa0;        /* primary brand blue (from logo badge) */
   --raw-grape-light: #6e97ce;  /* lighter blue for highlights */
   --raw-grape-dim: #14213d;    /* deep navy for borders/gradients */
   --raw-cream: #fff3dc;        /* bright cream chip (from logo wordmark) */
-  --raw-coral: #e8821e;        /* juicy CTA / pop accent — pixel orange */
+  --raw-coral: #e8821e;        /* juicy CTA / pop accent - pixel orange */
   --raw-coral-light: #f3a855;
   --raw-coral-deep: #9c5210;   /* coral, darkened for use as readable text/icons (~4.8:1 on cream) */
   --raw-mint: #6fa0d8;         /* soft secondary accent (sky blue) */
@@ -122,6 +122,15 @@ h1, h2, h3, h4 {
 
 .animate-drift {
   animation: drift 2.4s ease-in-out infinite;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .grain {
