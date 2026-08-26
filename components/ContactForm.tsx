@@ -106,7 +106,7 @@ export default function ContactForm() {
       </div>
       {status === "error" && (
         <p className="text-sm text-coral-deep">
-          Something went wrong on our end — try again in a moment.
+          Something went wrong on our end - try again in a moment.
         </p>
       )}
       <MagneticButton type="submit" variant="solid" cursorLabel="Send" className="mt-2 self-start">

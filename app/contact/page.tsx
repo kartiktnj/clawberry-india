@@ -30,7 +30,7 @@ export default function ContactPage() {
             <span className="text-gradient-berry">all ears</span> (and paws).
           </>
         }
-        description="Order issues, product questions, or just want to send a photo of your pet — this is the place."
+        description="Order issues, product questions, or just want to send a photo of your pet - this is the place."
       />
 
       <section className="bg-void pb-24">
@@ -57,7 +57,7 @@ export default function ContactPage() {
             </div>
             <Reveal delay={0.3} className="mt-8">
               <p className="text-sm text-ink-dim">
-                Support hours: Monday–Saturday, 10am–7pm IST. We reply to every message —
+                Support hours: Monday–Saturday, 10am–7pm IST. We reply to every message -
                 promise.
               </p>
             </Reveal>

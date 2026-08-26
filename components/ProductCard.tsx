@@ -21,7 +21,7 @@ export default function ProductCard({
 }: {
   product: Product;
   className?: string;
-  /** Overrides the default "View" link in the price row — swap in an add-to-cart control once D2C ships. */
+  /** Overrides the default "View" link in the price row - swap in an add-to-cart control once D2C ships. */
   action?: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);

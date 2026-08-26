@@ -15,7 +15,7 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    // Nothing in this JSX starts hidden — skipping the tweens entirely
+    // Nothing in this JSX starts hidden - skipping the tweens entirely
     // just leaves every element in its natural, already-visible state.
     if (shouldReduceMotion) return;
 
@@ -54,7 +54,7 @@ export default function Hero() {
   return (
     <section
       ref={scope}
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-void pb-16 pt-40 sm:pt-44"
+      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-void pb-16 pt-32 sm:pt-36"
     >
       <PawField />
       <CursorTrail />
@@ -78,14 +78,14 @@ export default function Hero() {
             ))}
           </h1>
 
-          <div className="hero-mascot relative hidden shrink-0 lg:block">
-            <div className="absolute -inset-6 rounded-full bg-grape/30 blur-3xl" aria-hidden />
+          <div className="hero-mascot hidden shrink-0 lg:block">
             <Image
-              src="/images/logo.png"
-              alt="Clawberry mascot — pixel-art dog and cat"
-              width={200}
-              height={160}
-              className="relative w-[13vw] max-w-[220px] rotate-3 rounded-3xl border border-ink/10 shadow-2xl shadow-ink/20"
+              src="/images/hero-mascot.gif"
+              alt="Clawberry mascot - pixel-art dog and cat high-fiving"
+              width={717}
+              height={435}
+              unoptimized
+              className="w-[26vw] max-w-[420px]"
             />
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function Hero() {
         <div className="hero-fade flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-md text-base text-ink-dim sm:text-lg">
             Clawberry is treats, toys and gear built around one obsession: pets who use
-            everything to the point of destruction — and love it.
+            everything to the point of destruction - and love it.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">

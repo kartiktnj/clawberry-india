@@ -26,7 +26,7 @@ export default function AboutPage() {
             and still thought starting a pet brand was a good idea.
           </>
         }
-        description="Clawberry exists because our own dog rejected every 'premium' treat on the market — and we got curious about why."
+        description="Clawberry exists because our own dog rejected every 'premium' treat on the market - and we got curious about why."
       />
 
       <section className="bg-void pb-24">
@@ -39,7 +39,7 @@ export default function AboutPage() {
               />
               <Image
                 src="/images/logo.png"
-                alt="Clawberry mascot — pixel-art dog and cat peeking over the logo"
+                alt="Clawberry mascot - pixel-art dog and cat peeking over the logo"
                 width={480}
                 height={384}
                 className="relative w-full max-w-sm rounded-2xl border border-ink/10"
@@ -57,7 +57,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-4 text-ink-dim">
-                Our pixel-art dog and cat aren&apos;t just a logo — they&apos;re modelled on the two
+                Our pixel-art dog and cat aren&apos;t just a logo - they&apos;re modelled on the two
                 opinions that shape every product decision at Clawberry. If the &ldquo;dog&rdquo; would
                 destroy it in ten minutes and the &ldquo;cat&rdquo; would ignore it completely, it doesn&apos;t
                 ship.

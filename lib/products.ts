@@ -111,7 +111,7 @@ export const timeline = [
   {
     year: "2026",
     title: "Building the pet aisle we always wanted",
-    body: "Now we're designing the next generation of Clawberry essentials — playful, premium, and built around how pets actually behave.",
+    body: "Now we're designing the next generation of Clawberry essentials - playful, premium, and built around how pets actually behave.",
   },
 ];
 
@@ -141,7 +141,7 @@ export const faqs = [
   },
   {
     q: "Do you offer a subscription for treats?",
-    a: "Yes — Clawberry Refill lets you set a schedule for treats and food, with 10% off every recurring order.",
+    a: "Yes - Clawberry Refill lets you set a schedule for treats and food, with 10% off every recurring order.",
   },
   {
     q: "What if my pet doesn't love it?",
