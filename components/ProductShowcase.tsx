@@ -130,7 +130,11 @@ export default function ProductShowcase() {
       <div
         ref={trackRef}
         className={cn(
-          "no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 sm:px-8",
+          // scroll-pl matches pl so the snap algorithm treats the leading
+          // padding as part of the "resting" position - without it, Chrome
+          // snaps the first card's edge flush to the container, erasing the
+          // padding the moment the track settles.
+          "no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pl-5 scroll-pl-5 pr-6 pb-4 sm:pr-8",
           "cursor-grab active:cursor-grabbing"
         )}
       >
