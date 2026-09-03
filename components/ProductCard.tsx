@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -79,21 +80,32 @@ export default function ProductCard({
 
       <div
         className={cn(
-          "my-8 flex h-32 items-center justify-center rounded-2xl",
-          colors.bg
+          "relative my-8 flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl",
+          product.image ? "bg-[#f9ddba]" : colors.bg
         )}
         style={{ transform: "translateZ(30px)" }}
       >
-        <motion.div
-          animate={reduceMotion ? undefined : { y: [0, -8, 0], rotate: [0, 3, 0, -3, 0] }}
-          transition={
-            reduceMotion
-              ? undefined
-              : { duration: floatDuration, delay: floatDelay, repeat: Infinity, ease: "easeInOut" }
-          }
-        >
-          <ProductIcon icon={product.icon} className={cn("h-14 w-14", colors.text)} />
-        </motion.div>
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            draggable={false}
+            sizes="(max-width: 640px) 280px, 320px"
+            className="object-contain p-3"
+          />
+        ) : (
+          <motion.div
+            animate={reduceMotion ? undefined : { y: [0, -8, 0], rotate: [0, 3, 0, -3, 0] }}
+            transition={
+              reduceMotion
+                ? undefined
+                : { duration: floatDuration, delay: floatDelay, repeat: Infinity, ease: "easeInOut" }
+            }
+          >
+            {product.icon && <ProductIcon icon={product.icon} className={cn("h-14 w-14", colors.text)} />}
+          </motion.div>
+        )}
       </div>
 
       <div style={{ transform: "translateZ(20px)" }}>

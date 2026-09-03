@@ -39,10 +39,51 @@ export default function ProductShowcase() {
     const track = trackRef.current;
     if (!track) return;
 
+    // Matches the pl-5/scroll-pl-5 lead-in, so a snapped card's true resting
+    // scrollLeft can be computed from its own offsetLeft.
+    const SNAP_INSET = 20;
+    // How far ahead (in ms of travel at release velocity) to project the
+    // landing spot - this is what turns a flick into "glide to the next
+    // card" instead of snapping straight back to the one you started on.
+    const FLICK_PROJECTION_MS = 130;
+
     let isDown = false;
     let startX = 0;
     let startScroll = 0;
     let moved = false;
+    let pendingDx = 0;
+    let rafId: number | null = null;
+    let lastSample = { scrollLeft: 0, time: 0 };
+    let velocity = 0; // px of scrollLeft per ms
+
+    // Batches the scrollLeft write to once per frame instead of once per
+    // pointermove (which can fire far faster than the screen refreshes) -
+    // that mismatch is what reads as "jagged" rather than a smooth drag.
+    const applyScroll = () => {
+      const next = startScroll - pendingDx;
+      track.scrollLeft = next;
+      rafId = null;
+
+      const now = performance.now();
+      const dt = now - lastSample.time;
+      if (dt > 0) velocity = (next - lastSample.scrollLeft) / dt;
+      lastSample = { scrollLeft: next, time: now };
+    };
+
+    const nearestSnapLeft = (target: number) => {
+      const children = Array.from(track.children) as HTMLElement[];
+      let closest = 0;
+      let minDist = Infinity;
+      for (const child of children) {
+        const left = Math.max(0, child.offsetLeft - SNAP_INSET);
+        const dist = Math.abs(left - target);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = left;
+        }
+      }
+      return closest;
+    };
 
     const onPointerDown = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
@@ -50,17 +91,51 @@ export default function ProductShowcase() {
       moved = false;
       startX = e.clientX;
       startScroll = track.scrollLeft;
-      track.setPointerCapture(e.pointerId);
+      lastSample = { scrollLeft: track.scrollLeft, time: performance.now() };
+      velocity = 0;
+      // A stale/invalid pointer id throws here in rare edge cases - that
+      // must never skip suspending snap and selection below.
+      try {
+        track.setPointerCapture(e.pointerId);
+      } catch {
+        // no-op
+      }
+      // Snap fights a live drag if left active, and native text/image
+      // selection turns the gesture into a selection instead of a scroll -
+      // both are suspended for the duration of the drag only.
+      track.style.scrollSnapType = "none";
+      track.classList.add("select-none", "cursor-grabbing");
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
       if (Math.abs(dx) > 4) moved = true;
-      track.scrollLeft = startScroll - dx;
+      pendingDx = dx;
+      if (rafId === null) rafId = requestAnimationFrame(applyScroll);
     };
-    const onPointerUp = (e: PointerEvent) => {
+    const endDrag = (e: PointerEvent) => {
+      if (!isDown) return;
       isDown = false;
-      track.releasePointerCapture(e.pointerId);
+      try {
+        track.releasePointerCapture(e.pointerId);
+      } catch {
+        // no-op
+      }
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        applyScroll(); // flush the last pending frame so velocity/target reflect it
+      }
+
+      // Project the release velocity forward, then glide to whichever card
+      // is nearest that projected point - a soft flick lands on the next
+      // card instead of snapping straight back to the one you grabbed.
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const projected = track.scrollLeft + velocity * FLICK_PROJECTION_MS;
+      const target = nearestSnapLeft(Math.max(0, projected));
+      track.style.scrollSnapType = "";
+      track.classList.remove("select-none", "cursor-grabbing");
+      track.scrollTo({ left: target, behavior: reduced ? "auto" : "smooth" });
     };
     // Suppress the trailing click after a real drag so links/buttons under
     // the cursor don't fire on release.
@@ -70,16 +145,24 @@ export default function ProductShowcase() {
         e.stopPropagation();
       }
     };
+    // Stops the browser's native image drag-ghost from hijacking the
+    // gesture when the pointer moves over a product photo mid-drag.
+    const onDragStart = (e: DragEvent) => e.preventDefault();
 
     track.addEventListener("pointerdown", onPointerDown);
     track.addEventListener("pointermove", onPointerMove);
-    track.addEventListener("pointerup", onPointerUp);
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
     track.addEventListener("click", onClickCapture, true);
+    track.addEventListener("dragstart", onDragStart);
     return () => {
       track.removeEventListener("pointerdown", onPointerDown);
       track.removeEventListener("pointermove", onPointerMove);
-      track.removeEventListener("pointerup", onPointerUp);
+      track.removeEventListener("pointerup", endDrag);
+      track.removeEventListener("pointercancel", endDrag);
       track.removeEventListener("click", onClickCapture, true);
+      track.removeEventListener("dragstart", onDragStart);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -135,18 +218,18 @@ export default function ProductShowcase() {
           // snaps the first card's edge flush to the container, erasing the
           // padding the moment the track settles.
           "no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pl-5 scroll-pl-5 pr-6 pb-4 sm:pr-8",
-          "cursor-grab active:cursor-grabbing"
+          "cursor-grab"
         )}
       >
         {products.map((product) => (
           <div
             key={product.slug}
-            className="h-[420px] w-[280px] shrink-0 snap-start sm:w-[320px]"
+            className="w-[280px] shrink-0 snap-start sm:w-[320px]"
           >
             <ProductCard product={product} className="h-full" />
           </div>
         ))}
-        <div className="flex h-[420px] w-[280px] shrink-0 snap-start flex-col items-start justify-center gap-4 sm:w-[320px]">
+        <div className="flex w-[280px] shrink-0 snap-start flex-col items-start justify-center gap-4 sm:w-[320px]">
           <p className="font-display text-2xl font-semibold text-ink">
             That&apos;s not even half of it.
           </p>

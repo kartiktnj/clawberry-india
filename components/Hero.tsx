@@ -105,7 +105,7 @@ export default function Hero() {
 
         <div className="hero-fade flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-md text-base text-ink-dim sm:text-lg">
-            Clawberry is treats, toys and gear built around one obsession: pets who use
+            Clawberry is toys and gear built around one obsession: pets who use
             everything to the point of destruction - and love it.
           </p>
 
