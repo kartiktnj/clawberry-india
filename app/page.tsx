@@ -8,7 +8,7 @@ const TICKER = [
   "Free Shipping above 999",
   "Get 10% off on first order",
   "Free Shipping above 999",
-  "lorem ipsum dolor sit amet",
+  "Made in India",
 ];
 
 export default function Home() {

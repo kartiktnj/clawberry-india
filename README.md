@@ -2,7 +2,7 @@
 
 A playful, motion-aware marketing site for **Clawberry**, a pet supplies startup.
 Built with Next.js 16 (App Router), Tailwind CSS v4, Framer Motion, and GSAP +
-ScrollTrigger, with Lenis for smooth scrolling.
+ScrollTrigger, with Lenis for smooth scrolling and Resend for contact form email.
 
 ## Design direction
 
@@ -58,7 +58,7 @@ app/
   shop/page.tsx         Shop (filterable product grid)
   about/page.tsx        Brand story, timeline, values
   contact/page.tsx      Contact form + FAQ
-  api/contact/route.ts  Form submission endpoint (stubbed - wire to email/CRM)
+  api/contact/route.ts  Contact form endpoint - emails submissions via Resend
   robots.ts / sitemap.ts  SEO metadata routes
   icon.png              Favicon (generated from the Clawberry logo)
 
@@ -101,15 +101,48 @@ automatically.
 
 ## Hooking up the contact form
 
-`app/api/contact/route.ts` currently just logs submissions server-side. Wire it up to
-a real provider (Resend, Postmark, SendGrid, a Slack webhook, a Google Sheet, etc.) -
-the `TODO` comment marks exactly where.
+`app/api/contact/route.ts` emails every submission via [Resend](https://resend.com).
+It needs one environment variable to actually send anything - without it, submissions
+just log to the server console (the form still shows a success state either way, so
+this fails silently if you forget to set it up).
+
+Create a `.env.local` file in the project root (git-ignored, never committed):
+
+```
+RESEND_API_KEY=re_your_key_here
+```
+
+Get a key from the [Resend dashboard](https://resend.com) (free tier: 3,000
+emails/month). By default, submissions send **to** `clawberryindia@gmail.com` and
+**from** Resend's shared test address (`onboarding@resend.dev`) - that test address
+only delivers to the email you signed up to Resend with, so sign up using
+`clawberryindia@gmail.com` itself for this to work out of the box.
+
+Two optional overrides, also set in `.env.local`:
+
+```
+CONTACT_EMAIL_TO=someone-else@example.com
+CONTACT_EMAIL_FROM=Clawberry <hello@clawberry.in>
+```
+
+`CONTACT_EMAIL_FROM` requires verifying that domain in the Resend dashboard first
+(a few DNS records) - worth doing before real launch, since a `resend.dev` sender
+address looks far less legitimate to recipients than your own domain. Every email
+also sets `replyTo` to the customer's own address, so replying from your inbox goes
+straight back to them.
 
 ## Deploying
 
 This is a standard Next.js app - deploy to Vercel by pushing to a Git repo and
 importing it at [vercel.com/new](https://vercel.com/new), or run `npm run build &&
 npm run start` on any Node host.
+
+`.env.local` is git-ignored and never gets pushed with the repo - that's intentional,
+since it holds the `RESEND_API_KEY` secret. The deployed site needs that same
+variable set separately, directly on the host: on Vercel, add it under **Settings →
+Environment Variables** on the project (same names/values as your `.env.local`,
+`CONTACT_EMAIL_TO`/`CONTACT_EMAIL_FROM` included if you're overriding those), then
+redeploy. Any other host has an equivalent env var mechanism outside the codebase.
 
 ## Performance & accessibility notes
 

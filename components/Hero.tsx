@@ -59,6 +59,19 @@ export default function Hero() {
       <PawField />
       <CursorTrail />
 
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 aspect-[8192/1147] overflow-hidden"
+        aria-hidden
+      >
+        <Image
+          src="/images/wordmark.png"
+          alt=""
+          width={4096}
+          height={1147}
+          className="absolute inset-x-0 top-0 h-auto w-full [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.20)_0%,rgba(0,0,0,0.07)_50%)] [-webkit-mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.20)_0%,rgba(0,0,0,0.07)_50%)]"
+        />
+      </div>
+
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 sm:px-8">
         <div className="flex items-start justify-between gap-6">
           <h1

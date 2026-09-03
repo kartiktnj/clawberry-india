@@ -11,9 +11,9 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: "power-chew-bone",
-    name: "Power Chew Bone",
-    tagline: "Beef-flavoured. Built for the boredest of jaws.",
+    slug: "everyday-explorer-collar",
+    name: "Everyday Explorer Collar",
+    tagline: "Adventure-ready. Comfortable for all-day wear.",
     price: 549,
     category: "dog",
     tag: "Bestseller",
