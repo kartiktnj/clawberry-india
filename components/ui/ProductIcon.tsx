@@ -1,7 +1,7 @@
 import { Bone, CircleDot, UtensilsCrossed, Cable, MousePointer2, BedDouble, Sparkles, Cookie, LucideIcon } from "lucide-react";
 import { Product } from "@/lib/products";
 
-const ICON_MAP: Record<Product["icon"], LucideIcon> = {
+const ICON_MAP: Record<NonNullable<Product["icon"]>, LucideIcon> = {
   bone: Bone,
   ball: CircleDot,
   bowl: UtensilsCrossed,
@@ -16,7 +16,7 @@ export default function ProductIcon({
   icon,
   className,
 }: {
-  icon: Product["icon"];
+  icon: NonNullable<Product["icon"]>;
   className?: string;
 }) {
   const Icon = ICON_MAP[icon];
