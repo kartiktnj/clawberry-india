@@ -165,6 +165,8 @@ export default function ProductShowcase() {
     track.addEventListener("pointermove", onPointerMove);
     track.addEventListener("pointerup", endDrag);
     track.addEventListener("pointercancel", endDrag);
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
     track.addEventListener("click", onClickCapture, true);
     track.addEventListener("dragstart", onDragStart);
     return () => {
@@ -172,6 +174,8 @@ export default function ProductShowcase() {
       track.removeEventListener("pointermove", onPointerMove);
       track.removeEventListener("pointerup", endDrag);
       track.removeEventListener("pointercancel", endDrag);
+      window.removeEventListener("pointerup", endDrag);
+      window.removeEventListener("pointercancel", endDrag);
       track.removeEventListener("click", onClickCapture, true);
       track.removeEventListener("dragstart", onDragStart);
       if (rafId !== null) cancelAnimationFrame(rafId);

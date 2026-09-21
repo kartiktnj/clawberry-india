@@ -20,6 +20,7 @@ Day-by-day record of changes to the Clawberry website. Newest entries at the top
 - **Changed** — Everyday Explorer Collar now has 5 colours (Red, Maroon, Black, Yellow, Blue) and sizes S/M/L; Adventure Walk Set and Tactical Harness have sizes S/M/L. Prices for the new sizes are placeholders pending real pricing.
 - **Added** — Product cards can now show a struck-through MRP next to the selling price with a "% off" chip; it follows the selected size and only appears when an `mrp` is set in `lib/products.ts`. MRPs currently in the data are placeholders.
 - **Fixed** — Size and colour buttons on the homepage carousel didn't respond to clicks (the drag-to-scroll handler was swallowing them); it now only takes over once the mouse actually drags.
+- **Fixed** — Releasing the mouse outside the homepage product carousel no longer leaves it stuck in a dragging state; the drag cleanup now runs even if pointer capture never started.
 - **Changed** — The single `size` field on `Product` is replaced by a `sizes` list with a price per size, plus an optional per-colour surcharge (`extra`).
 
 ## 2026-09-03
