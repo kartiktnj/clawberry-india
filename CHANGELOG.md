@@ -2,6 +2,26 @@
 
 Day-by-day record of changes to the Clawberry website. Newest entries at the top.
 
+## 2026-09-21
+
+### About page
+- **Fixed** — The "Meet the faces behind every box" mascot illustration was off-centre and boxed inside a second bordered frame on a cool, out-of-theme card. It now uses the same look as the product cards (off-white card, warm tan tile, art centred on it) with soft paw/sparkle accents and a gentle "zzZ", and its alt text now describes what the image actually shows.
+
+### Site-wide copy
+- **Changed** — Removed all references to treats, food and ingredients, since Clawberry only sells pet toys and accessories: the homepage value card is now "Materials you can pronounce", the site and Shop descriptions read "pet toys and accessories", and the contact success message says "your pet deserves a cuddle".
+- **Changed** — Contact-page FAQs: the "subscription for treats / Clawberry Refill" question is replaced with "What does Clawberry sell?", and the "Power Chew line" answer is rewritten around the rope toys.
+- **Changed** — Removed the unused food icons ("bowl", "treat") from the product icon set.
+
+### Homepage & Shop (product cards)
+- **Added** — Five new rope-toy products in the catalogue and the homepage carousel: Two-Knot Rope Toy, Carrot Rope Toy, Knotted Dummy Toy, Handle Ball Toy and Tuffy Rope Toy.
+- **Added** — `featured` flag on products: the homepage Fan Favourites carousel now shows only products with `featured: true` (previously it showed the whole catalogue). The Shop page still lists everything. Currently flagged: the two bandanas, collar, Adventure Walk Set, Tactical Harness and Heart Rope Toy.
+- **Fixed** — The collar photo path now matches its real filename (`Collars.png`); the old lowercase path worked on Windows but would have shown a broken image once deployed on Linux/Vercel.
+- **Added** — Product cards now show colour swatches and size chips (on the homepage Fan Favourites carousel and the Shop grid), and the price updates live as you pick a size or colour. Products declare options via `sizes` / `colors` in `lib/products.ts`; cards without options look as before.
+- **Changed** — Everyday Explorer Collar now has 5 colours (Red, Maroon, Black, Yellow, Blue) and sizes S/M/L; Adventure Walk Set and Tactical Harness have sizes S/M/L. Prices for the new sizes are placeholders pending real pricing.
+- **Added** — Product cards can now show a struck-through MRP next to the selling price with a "% off" chip; it follows the selected size and only appears when an `mrp` is set in `lib/products.ts`. MRPs currently in the data are placeholders.
+- **Fixed** — Size and colour buttons on the homepage carousel didn't respond to clicks (the drag-to-scroll handler was swallowing them); it now only takes over once the mouse actually drags.
+- **Changed** — The single `size` field on `Product` is replaced by a `sizes` list with a price per size, plus an optional per-colour surcharge (`extra`).
+
 ## 2026-09-03
 
 ### Homepage

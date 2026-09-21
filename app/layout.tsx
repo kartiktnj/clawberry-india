@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s · Clawberry",
   },
   description:
-    "Made by pet parents, made for every pet. Clawberry makes thoughtful pet supplies - treats, toys, beds and gear tested by real dogs and unreasonable cats. Free 48hr delivery across India.",
+    "Made by pet parents, made for every pet. Clawberry makes thoughtful pet toys and accessories tested by real dogs and unreasonable cats. Free 48hr delivery across India.",
   keywords: ["pet collars", "dog toys", "cat toys", "pet toys India", "Clawberry"],
   openGraph: {
     title: "Clawberry",

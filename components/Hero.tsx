@@ -93,7 +93,7 @@ export default function Hero() {
 
           <div className="hero-mascot hidden shrink-0 lg:block">
             <Image
-              src="/images/hero-mascot.gif"
+              src="/images/mascot/hero-mascot.webp"
               alt="Clawberry mascot - pixel-art dog and cat high-fiving"
               width={717}
               height={435}

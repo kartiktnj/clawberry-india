@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { products } from "@/lib/products";
+import { featuredProducts } from "@/lib/products";
 import ProductCard from "./ProductCard";
 import SectionLabel from "./ui/SectionLabel";
 import { cn } from "@/lib/utils";
@@ -93,13 +93,10 @@ export default function ProductShowcase() {
       startScroll = track.scrollLeft;
       lastSample = { scrollLeft: track.scrollLeft, time: performance.now() };
       velocity = 0;
-      // A stale/invalid pointer id throws here in rare edge cases - that
-      // must never skip suspending snap and selection below.
-      try {
-        track.setPointerCapture(e.pointerId);
-      } catch {
-        // no-op
-      }
+      // Pointer capture is deliberately NOT taken here: it retargets the
+      // eventual click to the track, which would swallow taps on the size /
+      // colour buttons and links inside the cards. It's taken once the
+      // pointer actually moves (see onPointerMove).
       // Snap fights a live drag if left active, and native text/image
       // selection turns the gesture into a selection instead of a scroll -
       // both are suspended for the duration of the drag only.
@@ -109,13 +106,28 @@ export default function ProductShowcase() {
     const onPointerMove = (e: PointerEvent) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
+      if (!moved && Math.abs(dx) > 4) {
+        moved = true;
+        // A stale/invalid pointer id throws in rare edge cases - never let
+        // that break the drag itself.
+        try {
+          track.setPointerCapture(e.pointerId);
+        } catch {
+          // no-op
+        }
+      }
       pendingDx = dx;
       if (rafId === null) rafId = requestAnimationFrame(applyScroll);
     };
     const endDrag = (e: PointerEvent) => {
       if (!isDown) return;
       isDown = false;
+      if (!moved) {
+        // A plain click/tap: restore state and let the target handle it.
+        track.style.scrollSnapType = "";
+        track.classList.remove("select-none", "cursor-grabbing");
+        return;
+      }
       try {
         track.releasePointerCapture(e.pointerId);
       } catch {
@@ -221,7 +233,7 @@ export default function ProductShowcase() {
           "cursor-grab"
         )}
       >
-        {products.map((product) => (
+        {featuredProducts.map((product) => (
           <div
             key={product.slug}
             className="w-[280px] shrink-0 snap-start sm:w-[320px]"

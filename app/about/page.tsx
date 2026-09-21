@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PawPrint, Sparkles } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
@@ -147,18 +148,45 @@ export default function AboutPage() {
       <section className="bg-void-soft py-24 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[32px] border border-ink/10 bg-void-softer p-10 sm:p-14">
-              <div
-                className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-grape/25 blur-3xl"
-                aria-hidden
-              />
-              <Image
-                src="/images/logo.png"
-                alt="Clawberry mascot - pixel-art dog and cat peeking over the logo"
-                width={480}
-                height={384}
-                className="relative w-full max-w-sm rounded-2xl border border-ink/10"
-              />
+            {/* Same treatment as the product cards: off-white card, warm tan tile, art centred on it. */}
+            <div className="rounded-[28px] border border-ink/10 bg-void-softer p-3 shadow-sm sm:p-4">
+              <div className="relative flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl bg-[#f9ddba]">
+                <PawPrint
+                  aria-hidden
+                  strokeWidth={1.5}
+                  className="absolute left-6 top-6 h-7 w-7 -rotate-12 text-coral-deep/25"
+                />
+                <Sparkles
+                  aria-hidden
+                  strokeWidth={1.5}
+                  className="absolute bottom-6 left-8 h-6 w-6 text-grape/25"
+                />
+                <PawPrint
+                  aria-hidden
+                  strokeWidth={1.5}
+                  className="absolute bottom-6 right-7 h-8 w-8 rotate-12 text-mint-deep/25"
+                />
+                <span
+                  aria-hidden
+                  className="absolute right-[13%] top-[9%] flex items-end gap-0.5 font-display font-bold text-grape/45 motion-safe:animate-drift"
+                >
+                  <span className="text-lg">z</span>
+                  <span className="text-2xl">Z</span>
+                  <span className="text-3xl">Z</span>
+                </span>
+                <div
+                  aria-hidden
+                  className="absolute bottom-[17%] left-1/2 h-4 w-[62%] -translate-x-1/2 rounded-full bg-ink/10 blur-md"
+                />
+                <Image
+                  src="/images/mascot/mascot-sleeping.png"
+                  alt="Clawberry mascots - a pixel-art dog and cat curled up asleep together in a pet bed"
+                  width={534}
+                  height={279}
+                  sizes="(min-width: 1024px) 400px, 80vw"
+                  className="relative h-auto w-[80%]"
+                />
+              </div>
             </div>
           </Reveal>
           <div>
