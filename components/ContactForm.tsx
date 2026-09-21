@@ -44,7 +44,7 @@ export default function ContactForm() {
         </span>
         <h3 className="font-display text-2xl font-semibold text-ink">Message sent</h3>
         <p className="max-w-sm text-ink-dim">
-          We usually reply within one business day. In the meantime, your pet deserves a treat.
+          We usually reply within one business day. In the meantime, your pet deserves a cuddle.
         </p>
         <button
           onClick={() => setStatus("idle")}

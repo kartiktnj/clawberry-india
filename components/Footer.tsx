@@ -16,23 +16,6 @@ function InstagramGlyph() {
   );
 }
 
-function FacebookGlyph() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M14 9h3V5h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1Z" />
-    </svg>
-  );
-}
-
-function YoutubeGlyph() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <rect x="2.5" y="6" width="19" height="12" rx="4" />
-      <path d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -103,18 +86,8 @@ export default function Footer() {
               </p>
               <ul className="mt-4 space-y-3">
                 <li>
-                  <a href="#" className="flex items-center gap-2 text-ink-dim hover:text-ink">
+                  <a href="https://www.instagram.com/clawberryindiaofficial/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-ink-dim hover:text-ink">
                     <InstagramGlyph /> Instagram
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center gap-2 text-ink-dim hover:text-ink">
-                    <FacebookGlyph /> Facebook
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center gap-2 text-ink-dim hover:text-ink">
-                    <YoutubeGlyph /> YouTube
                   </a>
                 </li>
               </ul>

@@ -1,15 +1,13 @@
-import { Bone, CircleDot, UtensilsCrossed, Cable, MousePointer2, BedDouble, Sparkles, Cookie, LucideIcon } from "lucide-react";
+import { Bone, CircleDot, Cable, MousePointer2, BedDouble, Sparkles, LucideIcon } from "lucide-react";
 import { Product } from "@/lib/products";
 
 const ICON_MAP: Record<NonNullable<Product["icon"]>, LucideIcon> = {
   bone: Bone,
   ball: CircleDot,
-  bowl: UtensilsCrossed,
   leash: Cable,
   mouse: MousePointer2,
   bed: BedDouble,
   yarn: Sparkles,
-  treat: Cookie,
 };
 
 export default function ProductIcon({

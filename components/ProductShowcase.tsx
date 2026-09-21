@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { products } from "@/lib/products";
+import { featuredProducts } from "@/lib/products";
 import ProductCard from "./ProductCard";
 import SectionLabel from "./ui/SectionLabel";
 import { cn } from "@/lib/utils";
@@ -93,10 +93,11 @@ export default function ProductShowcase() {
       startScroll = track.scrollLeft;
       lastSample = { scrollLeft: track.scrollLeft, time: performance.now() };
       velocity = 0;
-      // A stale/invalid pointer id throws here in rare edge cases - that
-      // must never skip suspending snap and selection below.
+      // Preserve the original control as the click target while ensuring move/up
+      // events continue bubbling to the track. A real drag transfers capture in
+      // onPointerMove below.
       try {
-        track.setPointerCapture(e.pointerId);
+        (e.target as Element).setPointerCapture(e.pointerId);
       } catch {
         // no-op
       }
@@ -109,13 +110,28 @@ export default function ProductShowcase() {
     const onPointerMove = (e: PointerEvent) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
+      if (!moved && Math.abs(dx) > 4) {
+        moved = true;
+        // A stale/invalid pointer id throws in rare edge cases - never let
+        // that break the drag itself.
+        try {
+          track.setPointerCapture(e.pointerId);
+        } catch {
+          // no-op
+        }
+      }
       pendingDx = dx;
       if (rafId === null) rafId = requestAnimationFrame(applyScroll);
     };
     const endDrag = (e: PointerEvent) => {
       if (!isDown) return;
       isDown = false;
+      if (!moved) {
+        // A plain click/tap: restore state and let the target handle it.
+        track.style.scrollSnapType = "";
+        track.classList.remove("select-none", "cursor-grabbing");
+        return;
+      }
       try {
         track.releasePointerCapture(e.pointerId);
       } catch {
@@ -153,6 +169,8 @@ export default function ProductShowcase() {
     track.addEventListener("pointermove", onPointerMove);
     track.addEventListener("pointerup", endDrag);
     track.addEventListener("pointercancel", endDrag);
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
     track.addEventListener("click", onClickCapture, true);
     track.addEventListener("dragstart", onDragStart);
     return () => {
@@ -160,6 +178,8 @@ export default function ProductShowcase() {
       track.removeEventListener("pointermove", onPointerMove);
       track.removeEventListener("pointerup", endDrag);
       track.removeEventListener("pointercancel", endDrag);
+      window.removeEventListener("pointerup", endDrag);
+      window.removeEventListener("pointercancel", endDrag);
       track.removeEventListener("click", onClickCapture, true);
       track.removeEventListener("dragstart", onDragStart);
       if (rafId !== null) cancelAnimationFrame(rafId);
@@ -221,7 +241,7 @@ export default function ProductShowcase() {
           "cursor-grab"
         )}
       >
-        {products.map((product) => (
+        {featuredProducts.map((product) => (
           <div
             key={product.slug}
             className="w-[280px] shrink-0 snap-start sm:w-[320px]"
