@@ -93,10 +93,14 @@ export default function ProductShowcase() {
       startScroll = track.scrollLeft;
       lastSample = { scrollLeft: track.scrollLeft, time: performance.now() };
       velocity = 0;
-      // Pointer capture is deliberately NOT taken here: it retargets the
-      // eventual click to the track, which would swallow taps on the size /
-      // colour buttons and links inside the cards. It's taken once the
-      // pointer actually moves (see onPointerMove).
+      // Preserve the original control as the click target while ensuring move/up
+      // events continue bubbling to the track. A real drag transfers capture in
+      // onPointerMove below.
+      try {
+        (e.target as Element).setPointerCapture(e.pointerId);
+      } catch {
+        // no-op
+      }
       // Snap fights a live drag if left active, and native text/image
       // selection turns the gesture into a selection instead of a scroll -
       // both are suspended for the duration of the drag only.
