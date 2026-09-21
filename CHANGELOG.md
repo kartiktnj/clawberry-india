@@ -4,6 +4,12 @@ Day-by-day record of changes to the Clawberry website. Newest entries at the top
 
 ## 2026-09-21
 
+### Homepage
+- **Changed** — Replaced the homepage hero mascot with the updated WebP artwork.
+
+### Footer
+- **Changed** — Linked the official Instagram account and removed the placeholder Facebook and YouTube links.
+
 ### About page
 - **Fixed** — The "Meet the faces behind every box" mascot illustration was off-centre and boxed inside a second bordered frame on a cool, out-of-theme card. It now uses the same look as the product cards (off-white card, warm tan tile, art centred on it) with soft paw/sparkle accents and a gentle "zzZ", and its alt text now describes what the image actually shows.
 
