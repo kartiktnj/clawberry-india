@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { featuredProducts } from "@/lib/products";
 import ProductCard from "./ProductCard";
 import SectionLabel from "./ui/SectionLabel";
@@ -246,7 +247,21 @@ export default function ProductShowcase() {
             key={product.slug}
             className="w-[280px] shrink-0 snap-start sm:w-[320px]"
           >
-            <ProductCard product={product} className="h-full" />
+            {/* Adding to cart happens on /shop - here the card just leads there. */}
+            <ProductCard
+              product={product}
+              className="h-full"
+              action={
+                <Link
+                  href="/shop"
+                  data-cursor="Shop"
+                  aria-label={`See ${product.name} in the shop`}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink/15 text-ink transition active:scale-90 group-hover:border-coral group-hover:text-coral-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                >
+                  <ArrowUpRight size={16} />
+                </Link>
+              }
+            />
           </div>
         ))}
         <div className="flex w-[280px] shrink-0 snap-start flex-col items-start justify-center gap-4 sm:w-[320px]">

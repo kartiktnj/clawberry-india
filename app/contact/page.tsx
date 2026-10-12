@@ -5,6 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import FaqAccordion from "@/components/FaqAccordion";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import { WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -30,8 +31,8 @@ const DETAILS = [
   },
   {
     icon: WhatsAppGlyph,
-    label: "+91 9810270909",
-    href: "https://wa.me/919810270909",
+    label: WHATSAPP_DISPLAY,
+    href: `https://wa.me/${WHATSAPP_NUMBER}`,
     cursorLabel: "Chat",
     external: true,
   },

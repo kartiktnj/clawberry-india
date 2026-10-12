@@ -14,7 +14,7 @@ export default function CtaBanner() {
         </Reveal>
         <Reveal delay={0.15}>
           <p className="max-w-md text-ink-dim">
-            Free delivery on your first order, 30-day returns, and a tail-wag guarantee.
+            30-day returns and a tail-wag guarantee.
           </p>
         </Reveal>
         <Reveal delay={0.25}>

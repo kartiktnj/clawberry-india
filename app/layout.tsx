@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/lib/cart";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -53,13 +54,15 @@ export default function RootLayout({
     <html lang="en" className={`${bricolage.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body className="antialiased" id="top">
         <MotionConfig reducedMotion="user">
-          <SmoothScroll>
-            <div className="grain" />
-            <CustomCursor />
-            <Nav />
-            <main>{children}</main>
-            <Footer />
-          </SmoothScroll>
+          <CartProvider>
+            <SmoothScroll>
+              <div className="grain" />
+              <CustomCursor />
+              <Nav />
+              <main>{children}</main>
+              <Footer />
+            </SmoothScroll>
+          </CartProvider>
         </MotionConfig>
       </body>
     </html>
