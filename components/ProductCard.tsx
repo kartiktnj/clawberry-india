@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Check, ShoppingBag } from "lucide-react";
 import { Product, pricingFor } from "@/lib/products";
 import ProductIcon from "./ui/ProductIcon";
+import { cartItemId, useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 
 const COLOR_CLASSES: Record<Product["color"], { bg: string; text: string; ring: string }> = {
@@ -22,34 +22,14 @@ export default function ProductCard({
 }: {
   product: Product;
   className?: string;
-  /** Overrides the default "View" link in the price row - swap in an add-to-cart control once D2C ships. */
+  /** Overrides the default add-to-cart button in the price row. */
   action?: React.ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springConfig = { stiffness: 150, damping: 18 };
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), springConfig);
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), springConfig);
-
   const reduceMotion = useReducedMotion();
   // Deterministic per-product offset so a grid of cards doesn't bounce in unison.
   const seed = product.slug.split("").reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
   const floatDelay = (seed % 12) / 10;
   const floatDuration = 3.2 + (seed % 9) / 10;
-
-  const handleMove = (e: React.MouseEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
 
   const colors = COLOR_CLASSES[product.color];
 
@@ -61,14 +41,32 @@ export default function ProductCard({
   const { price, mrp, discountPct } = pricingFor(product, size, swatch);
   const image = swatch?.image ?? product.image;
 
+  const { add } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
+  useEffect(() => {
+    if (!justAdded) return;
+    const id = setTimeout(() => setJustAdded(false), 1600);
+    return () => clearTimeout(id);
+  }, [justAdded]);
+
+  const handleAdd = () => {
+    add({
+      id: cartItemId(product.slug, size?.label, swatch?.name),
+      slug: product.slug,
+      name: product.name,
+      image,
+      size: size?.label,
+      colour: swatch?.name,
+      unitPrice: price,
+      unitMrp: mrp,
+    });
+    setJustAdded(true);
+  };
+
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{ rotateX, rotateY, transformPerspective: 800 }}
+    <div
       className={cn(
-        "group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] border border-ink/10 bg-void-softer p-6 shadow-sm transition-colors duration-150",
+        "group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] border border-ink/10 bg-void-softer p-6 shadow-sm transition duration-200 hover:shadow-md",
         colors.ring,
         className
       )}
@@ -83,7 +81,6 @@ export default function ProductCard({
         >
           {product.tag}
         </span>
-        <span className="font-mono text-xs text-ink-dimmer capitalize">{product.category}</span>
       </div>
 
       <div
@@ -91,7 +88,6 @@ export default function ProductCard({
           "relative my-8 flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl",
           image ? "bg-[#f9ddba]" : colors.bg
         )}
-        style={{ transform: "translateZ(30px)" }}
       >
         {image ? (
           <Image
@@ -116,7 +112,7 @@ export default function ProductCard({
         )}
       </div>
 
-      <div style={{ transform: "translateZ(20px)" }}>
+      <div>
         <h3 className="font-display text-xl font-semibold text-ink">{product.name}</h3>
         <p className="mt-1.5 text-sm text-ink-dim">{product.tagline}</p>
 
@@ -221,17 +217,25 @@ export default function ProductCard({
             </AnimatePresence>
           </span>
           {action ?? (
-            <Link
-              href={`/shop`}
-              data-cursor="View"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink transition active:scale-90 group-hover:border-coral group-hover:text-coral-deep"
-              aria-label={`View ${product.name}`}
+            <button
+              type="button"
+              onClick={handleAdd}
+              disabled={price <= 0}
+              data-cursor="Add"
+              aria-label={`Add ${product.name} to cart`}
+              className={cn(
+                "inline-flex h-10 shrink-0 items-center gap-2 rounded-full px-4 font-display text-xs font-semibold uppercase tracking-wide transition active:scale-95 disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
+                justAdded
+                  ? "bg-mint-deep text-cream"
+                  : "bg-coral text-ink hover:bg-coral-light"
+              )}
             >
-              <ArrowUpRight size={16} />
-            </Link>
+              {justAdded ? <Check size={15} strokeWidth={2.5} /> : <ShoppingBag size={15} />}
+              <span aria-live="polite">{justAdded ? "Added" : "Add"}</span>
+            </button>
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

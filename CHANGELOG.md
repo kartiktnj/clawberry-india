@@ -2,6 +2,34 @@
 
 Day-by-day record of changes to the Clawberry website. Newest entries at the top.
 
+## 2026-10-12
+
+### Cart & checkout (interim, until the full D2C backend is live)
+- **Added** — Cart: the product card's arrow button is now an "Add" button (turns to "Added ✓" for a moment). It adds the product with the size and colour currently selected, at the price shown; the same product in a different size/colour is a separate line, and adding it again increases the quantity. The cart is remembered in the browser between visits.
+- **Changed** — Adding to cart is only on the Shop page; the homepage carousel keeps the arrow button, which leads to the Shop.
+- **Added** — Cart icon with item-count badge in the nav, and a `/cart` page with quantity steppers, remove/clear, and an order summary (subtotal, savings vs MRP, total).
+- **Added** — `/checkout` page with delivery details (name, mobile, email, address, city, state, pincode, optional notes), validation, and an order summary. "Place order" is shown disabled as a placeholder for when online ordering goes live.
+- **Added** — "Order on WhatsApp" button: opens a chat with Clawberry's WhatsApp with a ready-to-send message containing an order ref, every item (with size/colour and quantity), the total to pay and the delivery details.
+- **Added** — "Did you send your order on WhatsApp?" prompt after tapping Order on WhatsApp. "Yes, I've sent it" clears the cart and shows a thank-you screen with the order ref; "Not yet" keeps the cart. The prompt also has an "Open WhatsApp" fallback link.
+- **Added** — Order alert email: tapping Order on WhatsApp also emails the order (ref, items, total, customer details) to the same inbox as the contact form (`/api/order`, via Resend). It is marked "initiated - not yet confirmed", since the customer may never press send; the subject carries the order ref, customer name, total and a timestamp so each alert is its own thread. It is sent once per distinct order and never blocks the customer.
+- **Added** — Shipping is now calculated: ₹99, free for orders of ₹1499 and above (`lib/shipping.ts`). The cart and checkout summaries show the shipping line and a "Add ₹X more to get free shipping" nudge, and the WhatsApp message and order alert email carry the subtotal, shipping and the total to pay.
+- **Changed** — Removed "Free delivery on your first order" from the closing banner (homepage and Shop), which contradicted the ₹99 shipping fee; it now reads "30-day returns and a tail-wag guarantee."
+- **Changed** — Homepage ticker now says "Free Shipping above ₹1499" (was 999), driven by the same constant.
+- **Changed** — Checkout details (saved on the device so repeat orders are quicker) are now wiped once the customer confirms they sent the order, and there is a "Clear form" button on the form; the form also says the details are saved on this device only.
+- **Added** — Coupons: a "Coupons" row on the cart and checkout summaries (shows "1 coupon available", or "CLAW5 applied · you save ₹X") that opens a drawer - a bottom sheet with drag-to-dismiss on phones, a side panel on desktop - titled "Save more", with a code field and the one available coupon, `CLAW5` (5% off on orders of ₹1499 and above). The coupon card is greyed out with "Add ₹X more to unlock" until the subtotal reaches ₹1499, then it can be applied by tapping it or typing the code (the drawer then closes on its own); the drawer closes with Esc, the backdrop or the X, locks page scroll while open and returns focus to the row; the discount shows as its own line in the totals, in the WhatsApp message and in the order alert email. Rule lives in `lib/coupons.ts`. Shipping is still judged on the subtotal before the coupon.
+- **Fixed** — Coupon drawer styling: the pale header band used to stop halfway through the code field and the panel used off-theme whites. It now uses the site's own surfaces (cream panel, tan header, off-white field and coupon card) with clean separation between them.
+- **Fixed** — Coupon drawer: the code field no longer shows a second outline box inside its own border when focused (the site's global focus outline was drawing on the inner input; the whole field now highlights instead), and the custom cursor no longer disappears under the open drawer.
+- **Changed** — Order references are now `DDMMYY-NNN` (order date in India time, then a running number starting at 501), e.g. `121026-501`, `121026-502`. The number comes from a server counter (`/api/order-ref`): a local file in development, Upstash Redis in production (setup in the README). If the counter is unreachable the customer still orders with a temporary ref like `121026-T5XK2`. The ref is reserved when they tap Order on WhatsApp and reused on retries.
+- **Changed** — WhatsApp number now lives in one place (`lib/contact.ts`) and is used by both the Contact page and the order message.
+
+### Shop & catalogue
+- **Changed** — Product cards no longer tilt/move on hover; they now only get a soft border and shadow highlight.
+- **Fixed** — On phones, tapping a product card left it stuck at a tilted angle (the tilt was only reset on mouse-leave, which touch never fires). Removing the tilt fixes it.
+- **Changed** — Removed the Everything / Dogs / Cats / Both filter buttons from the Shop page; it now simply lists every product. The intro line no longer mentions filtering.
+
+### Homepage
+- **Changed** — Hero mascot GIF is 15% larger (width 26vw → 30vw, max 420px → 483px).
+
 ## 2026-09-21
 
 ### Homepage

@@ -131,6 +131,31 @@ address looks far less legitimate to recipients than your own domain. Every emai
 also sets `replyTo` to the customer's own address, so replying from your inbox goes
 straight back to them.
 
+## Orders (WhatsApp checkout) and order numbers
+
+Until online payments ship, checkout sends the order to WhatsApp (`/checkout`) and emails
+an "order initiated" alert via the same Resend setup as the contact form
+(`app/api/order/route.ts`).
+
+Each order gets a reference like `121026-501` - the order date (DDMMYY, India time)
+then a running number that starts at **501**. The number comes from a counter behind
+`app/api/order-ref/route.ts`:
+
+- **Local development:** works with no setup - it uses a git-ignored `.data/order-counter.json`
+  (delete it to restart from 501).
+- **Production:** needs a Redis counter, because serverless hosts have no persistent disk.
+  The easy way is a free [Upstash Redis](https://upstash.com) database (on Vercel: Storage /
+  Marketplace -> Upstash Redis, which adds the variables for you). Set these on the host:
+
+```
+UPSTASH_REDIS_REST_URL=https://...
+UPSTASH_REDIS_REST_TOKEN=...
+```
+
+(`KV_REST_API_URL` / `KV_REST_API_TOKEN` are also accepted.) Without them, production
+falls back to a temporary ref like `121026-T5XK2` so customers can still order - the `T`
+marks it as out of sequence.
+
 ## Deploying
 
 This is a standard Next.js app - deploy to Vercel by pushing to a Git repo and

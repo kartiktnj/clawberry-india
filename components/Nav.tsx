@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
+import { useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -18,6 +19,7 @@ const LINKS = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { count } = useCart();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setOpen(false));
@@ -73,24 +75,39 @@ export default function Nav() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="flex items-center gap-2">
+          <Link
+            href="/cart"
+            data-cursor="Cart"
+            aria-label={count > 0 ? `Cart, ${count} item${count === 1 ? "" : "s"}` : "Cart"}
+            className={cn(
+              "relative flex h-10 w-10 items-center justify-center rounded-full border text-ink transition active:scale-90",
+              pathname === "/cart" ? "border-ink/30 bg-cream" : "border-ink/15 hover:border-ink/40"
+            )}
+          >
+            <ShoppingBag size={18} />
+            {count > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-coral px-1 font-mono text-[10px] font-bold text-ink">
+                {count > 99 ? "99+" : count}
+              </span>
+            )}
+          </Link>
           <Link
             href="/shop"
             data-cursor="Shop"
-            className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-ink transition hover:bg-coral-light active:scale-95"
+            className="hidden items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-ink transition hover:bg-coral-light active:scale-95 md:inline-flex"
           >
             Shop now
           </Link>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition active:scale-90 md:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
-
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition active:scale-90 md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
       </div>
 
       <AnimatePresence>

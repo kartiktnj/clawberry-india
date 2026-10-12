@@ -19,7 +19,7 @@ export default function ShopPage() {
             Everything they&apos;ll <span className="text-gradient-berry">claim as theirs.</span>
           </>
         }
-        description="Every product here has survived our panel of certified good boys and unreasonable cats. Filter by who it's for."
+        description="Every product here has survived our panel of certified good boys and unreasonable cats."
       />
       <section className="bg-void pb-28">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
