@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Check, ShoppingBag } from "lucide-react";
+import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { Product, pricingFor } from "@/lib/products";
 import ProductIcon from "./ui/ProductIcon";
-import { cartItemId, useCart } from "@/lib/cart";
+import { MAX_QTY, cartItemId, useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 
 const COLOR_CLASSES: Record<Product["color"], { bg: string; text: string; ring: string }> = {
@@ -41,17 +41,26 @@ export default function ProductCard({
   const { price, mrp, discountPct } = pricingFor(product, size, swatch);
   const image = swatch?.image ?? product.image;
 
-  const { add } = useCart();
-  const [justAdded, setJustAdded] = useState(false);
+  const { items, add, setQty } = useCart();
+  // The cart line for exactly what's selected on the card (same size + colour).
+  const lineId = cartItemId(product.slug, size?.label, swatch?.name);
+  const inCartQty = items.find((i) => i.id === lineId)?.qty ?? 0;
+
+  // Add <-> stepper swaps the focused button out of the DOM, so hand focus to its replacement.
+  const addRef = useRef<HTMLButtonElement>(null);
+  const plusRef = useRef<HTMLButtonElement>(null);
+  const focusNext = useRef<"add" | "plus" | null>(null);
+  const hasLine = inCartQty > 0;
   useEffect(() => {
-    if (!justAdded) return;
-    const id = setTimeout(() => setJustAdded(false), 1600);
-    return () => clearTimeout(id);
-  }, [justAdded]);
+    if (focusNext.current === "plus") plusRef.current?.focus();
+    if (focusNext.current === "add") addRef.current?.focus();
+    focusNext.current = null;
+  }, [hasLine]);
 
   const handleAdd = () => {
+    focusNext.current = "plus";
     add({
-      id: cartItemId(product.slug, size?.label, swatch?.name),
+      id: lineId,
       slug: product.slug,
       name: product.name,
       image,
@@ -60,7 +69,11 @@ export default function ProductCard({
       unitPrice: price,
       unitMrp: mrp,
     });
-    setJustAdded(true);
+  };
+
+  const decrease = () => {
+    if (inCartQty <= 1) focusNext.current = "add";
+    setQty(lineId, inCartQty - 1);
   };
 
   return (
@@ -216,24 +229,54 @@ export default function ProductCard({
               </motion.span>
             </AnimatePresence>
           </span>
-          {action ?? (
-            <button
-              type="button"
-              onClick={handleAdd}
-              disabled={price <= 0}
-              data-cursor="Add"
-              aria-label={`Add ${product.name} to cart`}
-              className={cn(
-                "inline-flex h-10 shrink-0 items-center gap-2 rounded-full px-4 font-display text-xs font-semibold uppercase tracking-wide transition active:scale-95 disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
-                justAdded
-                  ? "bg-mint-deep text-cream"
-                  : "bg-coral text-ink hover:bg-coral-light"
-              )}
-            >
-              {justAdded ? <Check size={15} strokeWidth={2.5} /> : <ShoppingBag size={15} />}
-              <span aria-live="polite">{justAdded ? "Added" : "Add"}</span>
-            </button>
-          )}
+          {action ??
+            (inCartQty > 0 ? (
+              <div
+                role="group"
+                aria-label={`${product.name} quantity in cart`}
+                className="inline-flex h-10 shrink-0 items-center rounded-full border border-coral/50 bg-coral/10 text-ink"
+              >
+                <button
+                  type="button"
+                  onClick={decrease}
+                  aria-label={
+                    inCartQty === 1 ? `Remove ${product.name} from cart` : "Decrease quantity"
+                  }
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-coral-deep transition hover:bg-coral/15 active:scale-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                >
+                  <Minus size={16} strokeWidth={2.5} />
+                </button>
+                <span
+                  aria-live="polite"
+                  className="min-w-6 text-center font-display text-sm font-bold tabular-nums"
+                >
+                  {inCartQty}
+                </span>
+                <button
+                  ref={plusRef}
+                  type="button"
+                  onClick={() => setQty(lineId, inCartQty + 1)}
+                  disabled={inCartQty >= MAX_QTY}
+                  aria-label="Increase quantity"
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-coral-deep transition hover:bg-coral/15 active:scale-90 disabled:opacity-40 disabled:hover:bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                >
+                  <Plus size={16} strokeWidth={2.5} />
+                </button>
+              </div>
+            ) : (
+              <button
+                ref={addRef}
+                type="button"
+                onClick={handleAdd}
+                disabled={price <= 0}
+                data-cursor="Add"
+                aria-label={`Add ${product.name} to cart`}
+                className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-coral/40 px-4 font-display text-xs font-semibold uppercase tracking-wide text-ink transition hover:bg-coral/55 active:scale-95 active:bg-coral/65 disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              >
+                <ShoppingBag size={15} />
+                Add
+              </button>
+            ))}
         </div>
       </div>
     </div>

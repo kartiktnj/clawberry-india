@@ -60,6 +60,7 @@ export const products: Product[] = [
     ],
     colors: [
       { name: "Red", hex: "#d81f26" },
+      { name: "Brown", hex: "#391c08" },
       { name: "Black", hex: "#141414" },
       { name: "Yellow", hex: "#f2c81b" },
       { name: "Blue", hex: "#1a3fd1" },

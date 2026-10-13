@@ -105,7 +105,7 @@ export default function CheckoutView() {
 
   // Restore what the visitor typed last time so a second order is one tap away.
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
+    const id = setTimeout(() => {
       try {
         const raw = window.localStorage.getItem(DETAILS_KEY);
         if (raw) setDetails({ ...EMPTY, ...JSON.parse(raw), notes: "" });
@@ -113,8 +113,8 @@ export default function CheckoutView() {
         // ignore unreadable saved details
       }
       loaded.current = true;
-    });
-    return () => cancelAnimationFrame(id);
+    }, 0);
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -268,10 +268,6 @@ export default function CheckoutView() {
             Clear form
           </button>
         </div>
-        <p className="mt-1 text-sm text-ink-dim">
-          We&apos;ll use these to deliver your order and get in touch about it. They&apos;re saved
-          on this device only, so next time is quicker.
-        </p>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <Field id="name" label="Full name" error={errors.name}>
