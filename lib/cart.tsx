@@ -70,7 +70,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [couponApplied, setCouponApplied] = useState(false);
 
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
+    // A timer rather than requestAnimationFrame: background tabs pause animation frames, which
+    // would leave the cart looking empty until the tab is focused.
+    const id = setTimeout(() => {
       setItems(readSaved());
       try {
         setCouponApplied(window.localStorage.getItem(COUPON_KEY) === "1");
@@ -78,8 +80,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         // ignore
       }
       setHydrated(true);
-    });
-    return () => cancelAnimationFrame(id);
+    }, 0);
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(() => {

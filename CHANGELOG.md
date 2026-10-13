@@ -2,10 +2,18 @@
 
 Day-by-day record of changes to the Clawberry website. Newest entries at the top.
 
+## 2026-10-13
+
+### Shop & catalogue
+- **Changed** — The in-cart quantity control on product cards is now a soft tonal style (light coral tint, thin coral outline, dark-orange − / +, navy count) instead of a solid coral pill, so it reads as a quiet "already in your cart" state.
+- **Changed** — The "Add" button on product cards is now a soft peach-filled button with a navy label and bag icon (deepening on hover) instead of a solid saturated coral fill, so it is clear but no longer the loudest thing on the card.
+
 ## 2026-10-12
 
 ### Cart & checkout (interim, until the full D2C backend is live)
 - **Added** — Cart: the product card's arrow button is now an "Add" button (turns to "Added ✓" for a moment). It adds the product with the size and colour currently selected, at the price shown; the same product in a different size/colour is a separate line, and adding it again increases the quantity. The cart is remembered in the browser between visits.
+- **Changed** — On the Shop page, a product card's "Add" button turns into a − / quantity / + control once that item is in the cart. It tracks the selected size and colour (a different size shows "Add" again), tapping − at 1 removes the item and brings "Add" back, and + stops at 20. Keyboard focus moves to the replacement button so it isn't lost.
+- **Fixed** — The cart no longer looks empty when the site is opened in a background tab (saved items are now loaded with a timer instead of waiting for an animation frame).
 - **Changed** — Adding to cart is only on the Shop page; the homepage carousel keeps the arrow button, which leads to the Shop.
 - **Added** — Cart icon with item-count badge in the nav, and a `/cart` page with quantity steppers, remove/clear, and an order summary (subtotal, savings vs MRP, total).
 - **Added** — `/checkout` page with delivery details (name, mobile, email, address, city, state, pincode, optional notes), validation, and an order summary. "Place order" is shown disabled as a placeholder for when online ordering goes live.
