@@ -268,6 +268,13 @@ export default function CheckoutView() {
             Clear form
           </button>
         </div>
+        <p className="mt-1 text-sm text-ink-dim">
+          Used only to deliver your order. See our{" "}
+          <Link href="/privacy" className="text-coral-deep underline underline-offset-2">
+            privacy policy
+          </Link>
+          .
+        </p>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <Field id="name" label="Full name" error={errors.name}>

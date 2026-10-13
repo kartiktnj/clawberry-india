@@ -1,3 +1,5 @@
+import { FREE_SHIPPING_THRESHOLD, SHIPPING_FEE } from "./shipping";
+
 export type Size = "XS" | "S" | "M" | "L" | "XL";
 export type SizeOption = { label: Size; price: number; mrp?: number };
 export type ColorOption = { name: string; hex: string; extra?: number; image?: string };
@@ -221,7 +223,7 @@ export function pricingFor(product: Product, size?: SizeOption, color?: ColorOpt
 }
 
 export const stats = [
-  { value: "48hr", label: "Pan-India delivery" },
+  { value: `₹${FREE_SHIPPING_THRESHOLD}+`, label: "Free shipping across India" },
   { value: "100%", label: "Made In India" },
 ];
 
@@ -286,7 +288,7 @@ export const founders = [
 export const faqs = [
   {
     q: "Where do you deliver?",
-    a: "Anywhere in India, in 48–72 hours. Metro cities usually see next-day delivery.",
+    a: `We deliver across India. Shipping is free on orders of ₹${FREE_SHIPPING_THRESHOLD} and above, and ₹${SHIPPING_FEE} below that.`,
   },
   {
     q: "What does Clawberry sell?",

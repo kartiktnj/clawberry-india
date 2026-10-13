@@ -5,6 +5,7 @@ import CheckoutView from "@/components/CheckoutView";
 export const metadata: Metadata = {
   title: "Checkout",
   description: "Share your delivery details and send your Clawberry order on WhatsApp.",
+  robots: { index: false, follow: false },
 };
 
 export default function CheckoutPage() {
