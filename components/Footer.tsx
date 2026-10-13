@@ -18,12 +18,24 @@ function InstagramGlyph() {
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    setSubmitted(true);
+    if (!email || status === "sending" || status === "success") return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -45,16 +57,31 @@ export default function Footer() {
                 type="email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (status === "error") setStatus("idle");
+                }}
+                aria-label="Email address"
                 placeholder="Your email, please human"
                 className="w-full rounded-full border border-ink/15 bg-void px-5 py-3.5 text-sm text-ink placeholder:text-ink-dimmer focus:border-mint focus:outline-none"
               />
               <MagneticButton type="submit" variant="solid" cursorLabel="Join">
-                {submitted ? "You're in ✦" : "Join the pack"}
+                {status === "sending" ? "Joining…" : status === "success" ? "You're in ✦" : "Join the pack"}
               </MagneticButton>
             </form>
-            <p className="mt-3 font-mono text-xs text-ink-dimmer">
-              First-order discount + early access to new drops. No spam, just paws.
+            <p
+              role="status"
+              className={
+                status === "error"
+                  ? "mt-3 font-mono text-xs text-coral-deep"
+                  : "mt-3 font-mono text-xs text-ink-dimmer"
+              }
+            >
+              {status === "error"
+                ? "Couldn't sign you up just now - please try again."
+                : status === "success"
+                  ? "Welcome to the pack! We'll be in touch with new drops."
+                  : "Early access to new drops. No spam, just paws."}
             </p>
           </div>
 
@@ -78,6 +105,7 @@ export default function Footer() {
                 <li><Link href="/contact" className="text-ink-dim hover:text-ink">FAQs</Link></li>
                 <li><Link href="/contact" className="text-ink-dim hover:text-ink">Shipping</Link></li>
                 <li><Link href="/contact" className="text-ink-dim hover:text-ink">Returns</Link></li>
+                <li><Link href="/privacy" className="text-ink-dim hover:text-ink">Privacy</Link></li>
               </ul>
             </div>
             <div className="col-span-2 sm:col-span-1">

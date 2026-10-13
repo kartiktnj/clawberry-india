@@ -3,11 +3,12 @@ import Marquee from "@/components/ui/Marquee";
 import ProductShowcase from "@/components/ProductShowcase";
 import WhySection from "@/components/WhySection";
 import CtaBanner from "@/components/CtaBanner";
+import { COUPON } from "@/lib/coupons";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/shipping";
 
 const TICKER = [
   `Free Shipping above ₹${FREE_SHIPPING_THRESHOLD}`,
-  "Get 10% off on first order",
+  `Code ${COUPON.code}: ${COUPON.percent}% off on orders of ₹${COUPON.minSubtotal} and above`,
   `Free Shipping above ₹${FREE_SHIPPING_THRESHOLD}`,
   "Made in India",
 ];

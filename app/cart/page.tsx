@@ -5,6 +5,7 @@ import CartView from "@/components/CartView";
 export const metadata: Metadata = {
   title: "Your cart",
   description: "Review the Clawberry toys and accessories in your cart.",
+  robots: { index: false, follow: false },
 };
 
 export default function CartPage() {

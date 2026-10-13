@@ -2,6 +2,17 @@
 
 Day-by-day record of changes to the Clawberry website. Newest entries at the top.
 
+## 2026-10-14
+
+### Launch prep (SEO & site settings)
+- **Changed** — Removed the remaining "48hr / 48–72 hours / next-day" delivery claims: the homepage stat tile is now "₹1499+ · Free shipping across India" and the contact-page delivery FAQ now says "We deliver across India. Shipping is free on orders of ₹1499 and above, and ₹99 below that." Both read from the shipping settings in `lib/shipping.ts`.
+- **Fixed** — The footer newsletter box now actually works: signing up emails the address to the team inbox (`/api/subscribe`, subject "Newsletter signup - …", so it can be filtered in Gmail) and the box shows sending / success / error states. Before, it only pretended to save the address. There is no mailing-list tool yet, so addresses are collected from that inbox.
+- **Changed** — Removed the "10% off on first order" ticker line and the "First-order discount" footer promise, since no such offer existed. The ticker now promotes the real coupon ("Code CLAW5: 5% off on orders of ₹1499 and above").
+- **Added** — `/privacy` page (what is collected, how it's used, who it passes through - Resend, Vercel, WhatsApp, delivery partners - what is saved on the device, retention and the visitor's choices), linked from the footer and the checkout form, and listed in the sitemap.
+- **Changed** — The site address now lives in one place (`lib/site.ts`, `https://clawberryindia.com`) and feeds the page links/previews, the sitemap and the robots file, so a domain change is a one-line edit.
+- **Fixed** — The site description shown on Google and in link previews no longer says "Free 48hr delivery across India" (which contradicted the ₹99 shipping fee); it now says delivery across India with free shipping on orders of ₹1499 and above, driven by the same shipping setting as the cart.
+- **Added** — `/cart`, `/checkout` and `/api/` are now blocked in `robots.txt`, and the cart and checkout pages carry a "noindex" tag, since they are personal per-visitor pages that shouldn't appear in search results.
+
 ## 2026-10-13
 
 ### Shop & catalogue

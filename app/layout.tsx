@@ -7,6 +7,8 @@ import CustomCursor from "@/components/CustomCursor";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/lib/cart";
+import { FREE_SHIPPING_THRESHOLD } from "@/lib/shipping";
+import { SITE_URL } from "@/lib/site";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -27,19 +29,19 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://clawberryindia.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Clawberry India",
     template: "%s · Clawberry",
   },
   description:
-    "Made by pet parents, made for every pet. Clawberry makes thoughtful pet toys and accessories tested by real dogs and unreasonable cats. Free 48hr delivery across India.",
+    `Made by pet parents, made for every pet. Clawberry makes thoughtful pet toys and accessories tested by real dogs and unreasonable cats. Delivery across India, free shipping on orders of ₹${FREE_SHIPPING_THRESHOLD} and above.`,
   keywords: ["pet collars", "dog toys", "cat toys", "pet toys India", "Clawberry"],
   openGraph: {
     title: "Clawberry",
     description:
       "Made by pet parents, made for every pet - thoughtful pet supplies tested by real dogs and unreasonable cats.",
-    url: "https://clawberryindia.com",
+    url: SITE_URL,
     siteName: "Clawberry",
     type: "website",
   },
