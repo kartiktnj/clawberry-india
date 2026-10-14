@@ -234,7 +234,7 @@ export const values = [
   },
   {
     title: "Materials you can pronounce",
-    body: "No mystery materials. We spell out what every product is made of, in plain language.",
+    body: "No mystery materials. We spell out what every product is made of, in simple language.",
   },
   {
     title: "Made to be used, not admired",
